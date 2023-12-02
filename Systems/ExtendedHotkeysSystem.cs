@@ -12,9 +12,12 @@ namespace ExtendedHotkeys.Systems
 {
     class ExtendedHotkeysSystem : GameSystemBase
     {
+        private ToolSystem m_ToolSystem;
         protected override void OnCreate()
         {
             base.OnCreate();
+
+            m_ToolSystem = World.GetOrCreateSystemManaged<ToolSystem>();
 
             string binding = "<Keyboard>/home";
             bool developerMode = GameManager.instance.configuration.developerMode;
@@ -26,11 +29,11 @@ namespace ExtendedHotkeys.Systems
             }
             AddBinding(name: "ResetElevationToZero", binding: binding, callback: OnResetElevation);
 
-            AddCombindBinding(name: "SetStraight", modifier: "<keyboard>/shift", binding: "<Keyboard>/q", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.Straight));
-            AddCombindBinding(name: "SetCurveTool", modifier: "<keyboard>/shift", binding: "<Keyboard>/w", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.SimpleCurve));
-            AddCombindBinding(name: "SetAdvCurveTool", modifier: "<keyboard>/shift", binding: "<Keyboard>/e", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.ComplexCurve));
-            AddCombindBinding(name: "SetContinuousMode", modifier: "<keyboard>/shift", binding: "<Keyboard>/r", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.Continuous));
-            AddCombindBinding(name: "SetGridMode", modifier: "<keyboard>/shift", binding: "<Keyboard>/t", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.Grid));
+            AddCombindBinding(name: "SetStraight", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/q", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.Straight));
+            AddCombindBinding(name: "SetCurveTool", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/w", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.SimpleCurve));
+            AddCombindBinding(name: "SetAdvCurveTool", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/e", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.ComplexCurve));
+            AddCombindBinding(name: "SetContinuousMode", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/r", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.Continuous));
+            AddCombindBinding(name: "SetGridMode", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/t", callback: (_) => OnSetNetToolSystemMode(_, NetToolSystem.Mode.Grid));
 
             UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}] System created!");
         }
@@ -41,6 +44,9 @@ namespace ExtendedHotkeys.Systems
 
         private void OnSetNetToolSystemMode(InputAction.CallbackContext _, NetToolSystem.Mode mode)
         {
+            if (m_ToolSystem.activeTool is not NetToolSystem)
+                return;
+
             NetToolSystem netToolSystem = World.GetExistingSystemManaged<NetToolSystem>();
             netToolSystem.mode = mode;
 
@@ -56,8 +62,16 @@ namespace ExtendedHotkeys.Systems
 
         private void OnResetElevation(InputAction.CallbackContext _)
         {
-            World.GetOrCreateSystemManaged<NetToolSystem>().elevation = 0f;
+            if (m_ToolSystem.activeTool is not NetToolSystem)
+                return;
 
+            if (GameManager.instance.gameMode == GameMode.MainMenu)
+            {
+                UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}]: Cannot trigger in main menu.");
+                return;
+            }
+
+            World.GetOrCreateSystemManaged<NetToolSystem>().elevation = 0f;
             EntityQuery uxSoundQuery = GetEntityQuery(ComponentType.ReadOnly<ToolUXSoundSettingsData>());
             ToolUXSoundSettingsData soundSettingsData = uxSoundQuery.GetSingleton<ToolUXSoundSettingsData>();
             AudioManager.instance.PlayUISound(soundSettingsData.m_NetElevationDownSound);
@@ -70,6 +84,7 @@ namespace ExtendedHotkeys.Systems
             InputAction customInputAction = new(name: name, binding: binding);
             customInputAction.performed += callback;
             customInputAction.Enable();
+
             UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}]: Added binding " + name + " with key " + binding);
         }
 

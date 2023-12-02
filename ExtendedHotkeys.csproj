@@ -6,8 +6,8 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 		<LangVersion>latest</LangVersion>
-		<AssemblyVersion>1.0.0.*</AssemblyVersion>
-		<Deterministic>false</Deterministic>
+		<AssemblyVersion>$(BepInExVersion)</AssemblyVersion>
+		<Version>$(BepInExVersion)</Version>
 		<RootNamespace>ExtendedHotkeys</RootNamespace>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<RestoreAdditionalProjectSources>
@@ -410,7 +410,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(BepInExVersion)' == '5'">
-		<PackageReference Include="BepInEx.Core" Version="5.*" IncludeAssets="compile"/>
+		<PackageReference Include="BepInEx.Core" Version="5.*" IncludeAssets="compile" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(BepInExVersion)' == '6'">
@@ -418,6 +418,6 @@
 	</PropertyGroup>
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="if not exist &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot; mkdir &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)0Harmony.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\0Harmony.dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\$(ProjectName).dll&quot;" />
+		<Exec Command="if not exist &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot; mkdir &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\$(ProjectName).dll&quot;&#xD;&#xA;powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -File &quot;$(ProjectDir)build.ps1&quot; &quot;$(ProjectName)&quot; &quot;$(PluginVersion)&quot; &quot;$(ProjectDir)\&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\\&quot; $(BepInExVersion)" />
 	</Target>
 </Project>
