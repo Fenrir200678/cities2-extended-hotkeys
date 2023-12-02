@@ -2,8 +2,8 @@
   "name": "ExtendedHotkeys",
   "version_number": "0.1.0",
   "website_url": "https://github.com/89pleasure/cities2-extended-hotkeys",
-  "description": "Adds more hotkeys to the game.",
+  "description": "Adds more hotkeys to the game. Change nettools quickly and reset elevation mode like in cities 1.",
   "dependencies": [
-    "BepInEx-BepInExPack-5.4.2100",
+    "BepInEx-BepInExPack-5.4.2100"
   ]
 }
