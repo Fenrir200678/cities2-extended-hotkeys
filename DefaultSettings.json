@@ -1,0 +1,9 @@
+{
+  "version": "0.6.0",
+
+  // GENERAL
+  "DisableMod": false,
+  "NetToolKeyCode": 304,
+  "SnappingKeyCode": 306,
+  "ElevationCode": 308
+}

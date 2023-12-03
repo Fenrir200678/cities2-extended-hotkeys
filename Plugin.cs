@@ -2,6 +2,7 @@
 using HarmonyLib;
 using System.Reflection;
 using System.Linq;
+using HookUILib.Core;
 
 #if BEPINEX_V6
     using BepInEx.Unity.Mono;
@@ -26,5 +27,17 @@ namespace ExtendedHotkeys
                 Logger.LogInfo($"Patched method: {patchedMethod.Module.Name}:{patchedMethod.Name}");
             }
         }
+    }
+
+    public class ExtendedHotkeysUI : UIExtension
+    {
+        public ExtendedHotkeysUI()
+        {
+            extensionContent = LoadEmbeddedResource("ExtendedHotkeys.dist.extended-hotkeys-ui.transpiled.js");
+        }
+
+        public new readonly ExtensionType extensionType = ExtensionType.Panel;
+        public new readonly string extensionID = "89pleasure.extendedHotkeys";
+        public new readonly string extensionContent;
     }
 }

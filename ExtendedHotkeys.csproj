@@ -6,8 +6,9 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 		<LangVersion>latest</LangVersion>
-		<AssemblyVersion>$(BepInExVersion)</AssemblyVersion>
-		<Version>$(BepInExVersion)</Version>
+		<AssemblyVersion>$(PluginVersion)</AssemblyVersion>
+		<FileVersion>$(PluginVersion)</FileVersion>
+		<Version>$(PluginVersion)</Version>
 		<RootNamespace>ExtendedHotkeys</RootNamespace>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<RestoreAdditionalProjectSources>
@@ -106,6 +107,10 @@
 		</Reference>
 		<Reference Include="Game">
 			<HintPath>$(Cities2_Game_Location)\Cities2_Data\Managed\Game.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(Cities2_Game_Location)\Cities2_Data\Managed\Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.Entities">
@@ -396,13 +401,24 @@
 			<HintPath>$(Cities2_Assembly_Location)\UnityEngine.XRModule.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="HookUILib">
+			<HintPath>UI\HookUILib.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="HookUIMod">
+			<HintPath>UI\HookUIMod.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 	</ItemGroup>
 
+	<ItemGroup>
+		<EmbeddedResource Include="dist/extended-hotkeys-ui.transpiled.js" />
+	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-		<PackageReference Include="HarmonyX" Version="2.10.2" />
+		<PackageReference Include="HarmonyX" Version="2.*" />
+		<PackageReference Include="System.Text.Json" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(BepInExVersion)' == '6'">
@@ -413,11 +429,17 @@
 		<PackageReference Include="BepInEx.Core" Version="5.*" IncludeAssets="compile" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="DefaultSettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 	<PropertyGroup Condition="'$(BepInExVersion)' == '6'">
 		<DefineConstants>$(DefineConstants);BEPINEX_V6</DefineConstants>
 	</PropertyGroup>
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="if not exist &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot; mkdir &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\$(ProjectName).dll&quot;&#xD;&#xA;powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -File &quot;$(ProjectDir)build.ps1&quot; &quot;$(ProjectName)&quot; &quot;$(PluginVersion)&quot; &quot;$(ProjectDir)\&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\\&quot; $(BepInExVersion)" />
+		<Exec Command="if not exist &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot; mkdir &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\$(ProjectName).dll&quot;;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Buffers.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Memory.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Numerics.Vectors.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Runtime.CompilerServices.Unsafe.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Text.Encodings.Web.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Text.Json.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Threading.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)System.Threading.Tasks.Extensions.dll&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DefaultSettings.json&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\&quot;&#xD;&#xA;powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -File &quot;$(ProjectDir)build.ps1&quot; &quot;$(ProjectName)&quot; &quot;$(PluginVersion)&quot; &quot;$(ProjectDir)\&quot; &quot;$(Cities2_Game_Location)\BepInEx\plugins\$(ProjectName)\\&quot; $(BepInExVersion)" />
 	</Target>
 </Project>
