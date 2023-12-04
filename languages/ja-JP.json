@@ -1,5 +1,17 @@
 {
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
-  "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.scroll": "スクロール",
+  "extendedhotkeys.setting.disableMod": "MODを無効にする",
+  "extendedhotkeys.setting.disableMod.description": "MODをグローバルに無効にする。",
+  "extendedhotkeys.setting.netToolModeWheel": "ツール・モード・ホイール",
+  "extendedhotkeys.setting.netToolModeWheel.description": "NetToolモードをスクロールする。",
+  "extendedhotkeys.setting.elevationWheel": "エレベーション・ホイール",
+  "extendedhotkeys.setting.elevationWheel.description": "標高を上げる／下げる。",
+  "extendedhotkeys.setting.anarchyMode": "アナーキー・モード",
+  "extendedhotkeys.setting.anarchyMode.description": "アナーキーモードを切り替える。",
+  "extendedhotkeys.setting.elevationReset": "標高リセット",
+  "extendedhotkeys.setting.elevationReset.description": "標高を地形の高さにリセットする。",
+  "extendedhotkeys.setting.elevationStepScroll": "標高ステップスクロール",
+  "extendedhotkeys.setting.elevationStepScroll.description": "昇降ステップのレベルをスクロールする。",
+  "extendedhotkeys.setting.netToolModes": "ツールモード",
+  "extendedhotkeys.setting.netToolModes.description": "ネットツールのモードを飛び越える。"
 }

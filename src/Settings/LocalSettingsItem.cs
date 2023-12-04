@@ -15,6 +15,7 @@ namespace ExtendedHotkeys.Settings
         public bool EnableSnappingWheel { get; set; } = true;
         public bool EnableAnarchyMode { get; set; } = true;
         public bool EnableElevationReset { get; set; } = true;
+        public bool EnableElevationStepScroll { get; set; } = true;
         public bool ExpandNTMGroup { get; set; } = false;
         public bool EnableNTMGroup { get; set; } = true;
         public bool EnableNTMStraight { get; set; } = true;
@@ -22,8 +23,8 @@ namespace ExtendedHotkeys.Settings
         public bool EnableNTMComplexCurve { get; set; } = true;
         public bool EnableNTMContinuous { get; set; } = true;
         public bool EnableNTMGrid { get; set; } = true;
-        public KeyCode NetToolKeyCode { get; set; } = KeyCode.LeftShift;
-        public KeyCode SnappingKeyCode { get; set; } = KeyCode.LeftControl;
+        public KeyCode NetToolKeyCode { get; set; } = KeyCode.LeftControl;
+        public KeyCode SnappingKeyCode { get; set; } = KeyCode.LeftShift;
         public KeyCode ElevationKeyCode { get; set; } = KeyCode.LeftAlt;
     }
 }

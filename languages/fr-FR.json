@@ -1,5 +1,17 @@
 {
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
-  "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.scroll": "Scroll",
+  "extendedhotkeys.setting.disableMod": "Désactiver le mode",
+  "extendedhotkeys.setting.disableMod.description": "Désactiver le mod globalement",
+  "extendedhotkeys.setting.netToolModeWheel": "Roue du mode outil",
+  "extendedhotkeys.setting.netToolModeWheel.description": "Défilement des modes NetTool",
+  "extendedhotkeys.setting.elevationWheel": "Roue d'élévation",
+  "extendedhotkeys.setting.elevationWheel.description": "Augmentation/diminution de l'élévation",
+  "extendedhotkeys.setting.anarchyMode": "Mode anarchie",
+  "extendedhotkeys.setting.anarchyMode.description": "Basculer en mode anarchie",
+  "extendedhotkeys.setting.elevationReset": "Réinitialisation de l'élévation",
+  "extendedhotkeys.setting.elevationReset.description": "Réinitialise l'élévation au rez-de-chaussée",
+  "extendedhotkeys.setting.elevationStepScroll": "Défilement de l'élévation",
+  "extendedhotkeys.setting.elevationStepScroll.description": "Défilement du niveau de la marche d'élévation",
+  "extendedhotkeys.setting.netToolModes": "Modes d'outils",
+  "extendedhotkeys.setting.netToolModes.description": "Passer d'un mode d'outil à l'autre"
 }

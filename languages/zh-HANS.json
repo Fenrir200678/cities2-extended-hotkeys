@@ -1,5 +1,17 @@
 ﻿{
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
-  "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.scroll": "卷轴",
+  "extendedhotkeys.setting.disableMod": "禁用模式",
+  "extendedhotkeys.setting.disableMod.description": "全局禁用 MOD。",
+  "extendedhotkeys.setting.netToolModeWheel": "工具模式轮",
+  "extendedhotkeys.setting.netToolModeWheel.description": "滚动浏览 NetTool 模式。",
+  "extendedhotkeys.setting.elevationWheel": "升降轮",
+  "extendedhotkeys.setting.elevationWheel.description": "增加/减少海拔高度。",
+  "extendedhotkeys.setting.anarchyMode": "无政府模式",
+  "extendedhotkeys.setting.anarchyMode.description": "切换无政府模式。",
+  "extendedhotkeys.setting.elevationReset": "海拔重置",
+  "extendedhotkeys.setting.elevationReset.description": "将标高重置为地面层。",
+  "extendedhotkeys.setting.elevationStepScroll": "升降步进卷轴",
+  "extendedhotkeys.setting.elevationStepScroll.description": "滚动升降步级。",
+  "extendedhotkeys.setting.netToolModes": "工具模式",
+  "extendedhotkeys.setting.netToolModes.description": "跳过网络工具模式。"
 }

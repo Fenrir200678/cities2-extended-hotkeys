@@ -1,5 +1,17 @@
 {
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
-  "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.scroll": "Прокрутка",
+  "extendedhotkeys.setting.disableMod": "Отключить мод",
+  "extendedhotkeys.setting.disableMod.description": "Отключить мод глобально",
+  "extendedhotkeys.setting.netToolModeWheel": "Колесо режима инструментов",
+  "extendedhotkeys.setting.netToolModeWheel.description": "Прокрутка режимов NetTool",
+  "extendedhotkeys.setting.elevationWheel": "Колесо высоты",
+  "extendedhotkeys.setting.elevationWheel.description": "Увеличение/уменьшение высоты",
+  "extendedhotkeys.setting.anarchyMode": "Режим анархии",
+  "extendedhotkeys.setting.anarchyMode.description": "Включить режим анархии",
+  "extendedhotkeys.setting.elevationReset": "Сброс высоты",
+  "extendedhotkeys.setting.elevationReset.description": "Сбрасывает высоту до первого этажа",
+  "extendedhotkeys.setting.elevationStepScroll": "Прокрутка шага возвышения",
+  "extendedhotkeys.setting.elevationStepScroll.description": "Прокрутка уровня шага возвышения",
+  "extendedhotkeys.setting.netToolModes": "Режимы инструментов",
+  "extendedhotkeys.setting.netToolModes.description": "Переход между режимами сетевых инструментов"
 }

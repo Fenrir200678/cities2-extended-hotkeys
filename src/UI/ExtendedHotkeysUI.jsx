@@ -1,6 +1,50 @@
 ﻿import React from 'react'
 import { useDataUpdate } from 'hookui-framework'
 import * as styles from './styles'
+import './style.css'
+
+const ButtonDropdown = ({ selected, options, react }) => {
+    const [isDropdownOpen, setDropdownOpen] = react.useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleItemClick = (item) => {
+        // Handle the click on a dropdown item
+        console.log(`Clicked on ${item}`);
+        // You can perform additional actions based on the selected item
+    };
+
+    const dropdownStyle = { maskImage: 'url(Media/Glyphs/StrokeArrowDown.svg)' };
+    const dropdownPopupStyle = { position: 'absolute', visibility: 'initial', left: '100%', top: '1091.000000px', maxHeight: '349.000000px', minWidth: '150.000000px' };
+
+    return (
+        <div className="field_Y9F undefined container_eL2">
+            <div>
+                <button className="dropdown-toggle_V9z dropdown-toggle_prl value-field_yJi value_PW_ dropdown_pJu item-states_QjV" onClick={toggleDropdown} style={{ minWidth: '110rem' }}>
+                    <div className="label_l_4">{selected}</div>
+                    <div className="tinted-icon_iKo indicator_Xmj" style={dropdownStyle}></div>
+                </button>
+                {isDropdownOpen && options && (
+                    <div className="dropdown-popup_mMv" style={dropdownPopupStyle}>
+                        <div className="scrollable_DXr y_SMM track-visible-y_RCA">
+                            <div class="content_gqa">
+                                {options.map((item) => (
+                                    <button className="dropdown-item_sZT undefined" key={item} onClick={() => handleItemClick(item)}>{item}</button>
+                                ))}
+                            </div>
+                            
+                        </div>
+                        <div className="track_e3O y_SMM">
+                            <div className="thumb_Cib y_SMM"></div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
 
 const $Panel = ({ title, children, react }) => {
 
@@ -157,14 +201,20 @@ const ExtendedHotkeysUI = ({ react }) => {
     /*const [enableSnappingWheel, setSnappingWheel] = react.useState(true);
     useDataUpdate(react, 'extendedHotkeys.enableSnappingWheel', setSnappingWheel);*/
 
+    const [enableAnarchyMode, setEnableAnarchyMode] = react.useState(false);
+    useDataUpdate(react, 'extendedHotkeys.enableAnarchyMode', setEnableAnarchyMode);
+
     const [enableElevationReset, setEnableElevationReset] = react.useState(true);
     useDataUpdate(react, 'extendedHotkeys.enableElevationReset', setEnableElevationReset);
+
+    const [enableElevationStepScroll, setEnableElevationStepScroll] = react.useState(true);
+    useDataUpdate(react, 'extendedHotkeys.enableElevationStepScroll', setEnableElevationStepScroll);
 
     const [expandNTMGroup, setExpandNTMGroup] = react.useState(true);
     useDataUpdate(react, 'extendedHotkeys.expandNTMGroup', setExpandNTMGroup);
 
     const [enableNTMGroup, setEnableNTMGroup] = react.useState(true);
-    useDataUpdate(react, 'extendedHotkeys.expandNTMGroup', setEnableNTMGroup);
+    useDataUpdate(react, 'extendedHotkeys.enableNTMGroup', setEnableNTMGroup);
 
     const [enableNTMStraight, setEnableNTMStraight] = react.useState(true);
     useDataUpdate(react, 'extendedHotkeys.enableNTMStraight', setEnableNTMStraight);
@@ -186,28 +236,28 @@ const ExtendedHotkeysUI = ({ react }) => {
     ];
 
     const mouseWheelSettingsData = [
-        { id: 1, label: "Tool Mode Wheel", description: "Scroll through NetTool modes.", isChecked: enableNetToolWheel, keyCode: 0 },
-        { id: 2, label: "Elevation Wheel", description: "Increase/Decrease elevation.", expanded: true, isChecked: enableElevationWheel, keyCode: 2 },
-        // { id: 3, label: "Snapping Wheel", description: "Switch through snapping templates.", isChecked: enableElevationWheel, keyCode: 1 },
+        { id: 1, label: translations['netToolModeWheel'], description: translations['netToolModeWheel.description'], isChecked: enableNetToolWheel, keyCode: 1 },
+        { id: 2, label: translations['elevationWheel'], description: translations['elevationWheel.description'], isChecked: enableElevationWheel, keyCode: 2 },
+        // { id: 3, label: "Snapping Wheel", description: "Switch through snapping templates.", isChecked: enableElevationWheel, keyCode: 0 },
     ];
 
     const staticHotkeysSettingsData = [
         {
-            id: 11, label: "Anarchy Mode", description: "Toggle anarchy mode.", isChecked: true, hotkey: "CTRL + A",
+            id: 11, label: translations['anarchyMode'], description: translations['anarchyMode.description'], isChecked: enableAnarchyMode, hotkey: "CTRL + A",
         },
         {
-            id: 4, label: "Elevation Reset", description: "Resets elevation to ground floor.", isChecked: enableElevationReset, hotkey: "POS1"
+            id: 4, label: translations['elevationReset'], description: translations['elevationReset.description'], isChecked: enableElevationReset, hotkey: "POS1"
         },
         {
-            id: 12, label: "Elevation Step Scroll", description: "Swap elevation step level.", isChecked: true, hotkey: "ALT + Mouse-R"
+            id: 12, label: translations['elevationStepScroll'], description: translations['elevationStepScroll.description'], isChecked: enableElevationStepScroll, hotkey: "ALT + Mouse-R"
         },
         {
-            id: 5, label: "Net Tool Modes", description: "Hop through net tool modes.", expanded: expandNTMGroup, isChecked: enableNTMGroup, children: [
-                { id: 6, label: "Straight", description: translations['enableNTStraight.description'], isChecked: enableNTMStraight, hotkey: "CTRL + Q" },
-                { id: 7, label: "Simple Curve", description: translations['enableNTSimpleCurve.description'], isChecked: enableNTMSimpleCurve, hotkey: "CTRL + W" },
-                { id: 8, label: "Complex Curve", description: translations['enableNTComplexCurve.description'], isChecked: enableNTMComplexCurve, hotkey: "CTRL + E" },
-                { id: 9, label: "Continuous", description: translations['enableNTContinuous.description'], isChecked: enableNTMContinuous, hotkey: "CTRL + R" },
-                { id: 10, label: "Grid", description: translations['enableNTGrid.description'], isChecked: enableNTMGrid, hotkey: "CTRL + T" },
+            id: 5, label: translations['netToolModes'], description: translations['netToolModes.description'], expanded: expandNTMGroup, isChecked: enableNTMGroup, children: [
+                { id: 6, label: translations['netToolModes.straight'], isChecked: enableNTMStraight, hotkey: "CTRL + Q" },
+                { id: 7, label: translations['netToolModes.curve'], isChecked: enableNTMSimpleCurve, hotkey: "CTRL + W" },
+                { id: 8, label: translations['netToolModes.complexCurve'], isChecked: enableNTMComplexCurve, hotkey: "CTRL + E" },
+                { id: 9, label: translations['netToolModes.continuous'], isChecked: enableNTMContinuous, hotkey: "CTRL + R" },
+                { id: 10, label: translations['netToolModes.grid'], isChecked: enableNTMGrid, hotkey: "CTRL + T" },
             ]
         },
     ];
@@ -225,7 +275,6 @@ const ExtendedHotkeysUI = ({ react }) => {
         }
 
         // Available mouse wheel key codes
-        const availableWheelKeyCodes = [ "SHIFT", "CTRL", "ALT"];
 
         const onExpandAction = children && children.length > 0 ? onExpand : null;
         const nestingStyle = { '--nesting': nested };
@@ -257,10 +306,11 @@ const ExtendedHotkeysUI = ({ react }) => {
 
         const renderWheelKeyCodes = () => {
             if (keyCode !== undefined) {
+                const availableWheelKeyCodes = ["SHIFT", "CTRL", "ALT"];
                 const label = availableWheelKeyCodes[keyCode] + " + Scroll";
                 return (
                     <div className={styles.CLASS_TT_HEADER_CONTENT} style={keyCodeStyle}>
-                        <div className={styles.CLASS_TT_LABEL}>{label}</div> 
+                        <div className={styles.CLASS_TT_LABEL}>{label}</div>
                     </div>
                 );
             }

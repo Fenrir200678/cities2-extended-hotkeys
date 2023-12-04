@@ -21,9 +21,6 @@ namespace ExtendedHotkeys.Systems
         private ToolSystem m_ToolSystem;
         private NetToolSystem m_NetToolSystem;
         private ExtendedHotKeysTranslationSystem m_CustomTranslationSystem;
-
-        private ProxyActionMap m_CameraMap;
-        private ProxyAction m_MouseZoomAction;
         private ToolUXSoundSettingsData m_SoundData;
 
         private readonly List<WheelBase> m_Wheels = [];
@@ -121,7 +118,7 @@ namespace ExtendedHotkeys.Systems
 
         private void OnSetNetToolSystemMode(InputAction.CallbackContext _, NetToolSystem.Mode mode)
         {
-            if (!m_Settings.EnableNTMGroup && m_ToolSystem.activeTool is not NetToolSystem)
+            if (!m_Settings.EnableNTMGroup || m_ToolSystem.activeTool is not NetToolSystem)
                 return;
 
             if (mode == NetToolSystem.Mode.Straight && !m_Settings.EnableNTMStraight)
@@ -148,7 +145,7 @@ namespace ExtendedHotkeys.Systems
 
         private void OnResetElevation(InputAction.CallbackContext _)
         {
-            if (!m_Settings.EnableElevationReset && m_ToolSystem.activeTool is not NetToolSystem)
+            if (!m_Settings.EnableElevationReset || m_ToolSystem.activeTool is not NetToolSystem)
                 return;
 
             World.GetOrCreateSystemManaged<NetToolSystem>().elevation = 0f;
@@ -172,7 +169,7 @@ namespace ExtendedHotkeys.Systems
 
         private void OnElevationScroll(InputAction.CallbackContext _)
         {
-            if (m_ToolSystem.activeTool is not NetToolSystem || InputManager.instance.mouseOverUI)
+            if (!m_Settings.EnableElevationStepScroll || m_ToolSystem.activeTool is not NetToolSystem || InputManager.instance.mouseOverUI)
                 return;
 
             float newElevation = m_NetToolSystem.elevationStep / 2.0f;

@@ -1,5 +1,17 @@
 {
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
+  "extendedhotkeys.scroll": "Scroll",
   "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.setting.disableMod.description": "Deaktiviere die Mod global.",
+  "extendedhotkeys.setting.netToolModeWheel": "Werkzeugmodus-Rad",
+  "extendedhotkeys.setting.netToolModeWheel.description": "Blättern durch die NetTool-Modi.",
+  "extendedhotkeys.setting.elevationWheel": "Erhöhungsrad",
+  "extendedhotkeys.setting.elevationWheel.description": "Erhöhen/Verringern der Höhe.",
+  "extendedhotkeys.setting.anarchyMode": "Anarchie-Modus",
+  "extendedhotkeys.setting.anarchyMode.description": "Anarchie-Modus umschalten.",
+  "extendedhotkeys.setting.elevationReset": "Höhe zurücksetzen",
+  "extendedhotkeys.setting.elevationReset.description": "Setzt die Höhe auf das Terrainhöhe zurück.",
+  "extendedhotkeys.setting.elevationStepScroll": "Höhenstufe-Scroll",
+  "extendedhotkeys.setting.elevationStepScroll.description": "Durch Erhöhungsstufe scrollen.",
+  "extendedhotkeys.setting.netToolModes": "Werkzeugmodi",
+  "extendedhotkeys.setting.netToolModes.description": "Durch Netz-Werkzeugmodi springen"
 }

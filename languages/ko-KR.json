@@ -1,5 +1,17 @@
 ﻿{
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
-  "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.scroll": "스크롤",
+  "extendedhotkeys.setting.disableMod": "모드 비활성화",
+  "extendedhotkeys.setting.disableMod.description": "모드를 전역적으로 비활성화합니다.",
+  "extendedhotkeys.setting.netToolModeWheel": "도구 모드 휠",
+  "extendedhotkeys.setting.netToolModeWheel.description": "넷툴 모드 스크롤.",
+  "extendedhotkeys.setting.elevationWheel": "고도 휠",
+  "extendedhotkeys.setting.elevationWheel.description": "고도 증가/감소.",
+  "extendedhotkeys.setting.anarchyMode": "아나키 모드",
+  "extendedhotkeys.setting.anarchyMode.description": "무정부 상태 모드 전환.",
+  "extendedhotkeys.setting.elevationReset": "고도 재설정",
+  "extendedhotkeys.setting.elevationReset.description": "고도를 1층으로 재설정합니다.",
+  "extendedhotkeys.setting.elevationStepScroll": "고도 단계 스크롤",
+  "extendedhotkeys.setting.elevationStepScroll.description": "고도 단계 스크롤.",
+  "extendedhotkeys.setting.netToolModes": "도구 모드",
+  "extendedhotkeys.setting.netToolModes.description": "넷 도구 모드로 이동."
 }

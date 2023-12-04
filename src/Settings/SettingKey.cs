@@ -15,5 +15,6 @@
         EnableNTMContinuous = 9,
         EnableNTMGrid = 10,
         EnableAnarchyMode = 11,
+        EnableElevationStepScroll = 12,
     }
 }

@@ -2054,12 +2054,14 @@
     use_data_update_default(react, "extendedHotkeys.enableNetToolWheel", setEnableNetToolWheel);
     const [enableElevationWheel, setEnableElevationWheel] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableElevationWheel", setEnableElevationWheel);
+    const [enableAnarchyMode, setEnableAnarchyMode] = react.useState(false);
+    use_data_update_default(react, "extendedHotkeys.enableAnarchyMode", setEnableAnarchyMode);
     const [enableElevationReset, setEnableElevationReset] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableElevationReset", setEnableElevationReset);
     const [expandNTMGroup, setExpandNTMGroup] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.expandNTMGroup", setExpandNTMGroup);
     const [enableNTMGroup, setEnableNTMGroup] = react.useState(true);
-    use_data_update_default(react, "extendedHotkeys.expandNTMGroup", setEnableNTMGroup);
+    use_data_update_default(react, "extendedHotkeys.enableNTMGroup", setEnableNTMGroup);
     const [enableNTMStraight, setEnableNTMStraight] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableNTMStraight", setEnableNTMStraight);
     const [enableNTMSimpleCurve, setEnableNTMSimpleCurve] = react.useState(true);
@@ -2074,37 +2076,44 @@
       { id: 0, label: translations["disableMod"], description: translations["disableMod.description"], isChecked: disableMod }
     ];
     const mouseWheelSettingsData = [
-      { id: 1, label: "NetTool Wheel", description: "Scroll through NetTool modes.", isChecked: enableNetToolWheel, keyCode: 2 },
-      { id: 2, label: "Elevation Wheel", description: "Increase/Decrease elevation.", isChecked: enableElevationWheel, keyCode: 1 }
-      // { id: 3, label: "Snapping Wheel", description: "Switch through snapping templates.", isChecked: enableElevationWheel, keyCode: 1 },
+      { id: 1, label: translations["netToolModeWheel"], description: translations["netToolModeWheel.description"], isChecked: enableNetToolWheel, keyCode: 1 },
+      { id: 2, label: translations["elevationWheel"], description: translations["elevationWheel.description"], isChecked: enableElevationWheel, keyCode: 2 }
+      // { id: 3, label: "Snapping Wheel", description: "Switch through snapping templates.", isChecked: enableElevationWheel, keyCode: 0 },
     ];
     const staticHotkeysSettingsData = [
       {
         id: 11,
-        label: "Anarchy Mode",
-        description: "Toggle anarchy mode.",
-        isChecked: true,
+        label: translations["anarchyMode"],
+        description: translations["anarchyMode.description"],
+        isChecked: enableAnarchyMode,
         hotkey: "CTRL + A"
       },
       {
         id: 4,
-        label: "Elevation Reset",
-        description: "Resets elevation to ground floor.",
+        label: translations["elevationReset"],
+        description: translations["elevationReset.description"],
         isChecked: enableElevationReset,
         hotkey: "POS1"
       },
       {
+        id: 12,
+        label: translations["elevationStepScroll"],
+        description: translations["elevationStepScroll.description"],
+        isChecked: true,
+        hotkey: "ALT + Mouse-R"
+      },
+      {
         id: 5,
-        label: "Net Tool Modes",
-        description: "Hop through net tool modes.",
+        label: translations["netToolModes"],
+        description: translations["netToolModes.description"],
         expanded: expandNTMGroup,
         isChecked: enableNTMGroup,
         children: [
-          { id: 6, label: "Straight", description: translations["enableNTStraight.description"], isChecked: enableNTMStraight, hotkey: "CTRL + Q" },
-          { id: 7, label: "Simple Curve", description: translations["enableNTSimpleCurve.description"], isChecked: enableNTMSimpleCurve, hotkey: "CTRL + W" },
-          { id: 8, label: "Complex Curve", description: translations["enableNTComplexCurve.description"], isChecked: enableNTMComplexCurve, hotkey: "CTRL + E" },
-          { id: 9, label: "Continuous", description: translations["enableNTContinuous.description"], isChecked: enableNTMContinuous, hotkey: "CTRL + R" },
-          { id: 10, label: "Grid", description: translations["enableNTGrid.description"], isChecked: enableNTMGrid, hotkey: "CTRL + T" }
+          { id: 6, label: translations["netToolModes.straight"], isChecked: enableNTMStraight, hotkey: "CTRL + Q" },
+          { id: 7, label: translations["netToolModes.curve"], isChecked: enableNTMSimpleCurve, hotkey: "CTRL + W" },
+          { id: 8, label: translations["netToolModes.complexCurve"], isChecked: enableNTMComplexCurve, hotkey: "CTRL + E" },
+          { id: 9, label: translations["netToolModes.continuous"], isChecked: enableNTMContinuous, hotkey: "CTRL + R" },
+          { id: 10, label: translations["netToolModes.grid"], isChecked: enableNTMGrid, hotkey: "CTRL + T" }
         ]
       }
     ];
@@ -2117,7 +2126,6 @@
       const onExpand = () => {
         engine.trigger("extendedHotkeys.onExpand", setting.id);
       };
-      const availableWheelKeyCodes = ["SHIFT", "CTRL", "ALT"];
       const onExpandAction = children && children.length > 0 ? onExpand : null;
       const nestingStyle = { "--nesting": nested };
       const headerContentStyle = { marginTop: "-1rem" };
@@ -2138,7 +2146,8 @@
         return null;
       };
       const renderWheelKeyCodes = () => {
-        if (keyCode) {
+        if (keyCode !== void 0) {
+          const availableWheelKeyCodes = ["SHIFT", "CTRL", "ALT"];
           const label2 = availableWheelKeyCodes[keyCode] + " + Scroll";
           return /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER_CONTENT, style: keyCodeStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_LABEL }, label2));
         }

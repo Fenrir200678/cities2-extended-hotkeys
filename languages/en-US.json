@@ -1,5 +1,17 @@
 {
-  "extendedhotkeys.hotkeys.description": "Aktiviere/Deaktiviere Tooltips wie du es brauchst.",
-  "extendedhotkeys.setting.disableMod": "Mod deaktivieren",
-  "extendedhotkeys.setting.disableMod.description": "Deaktiviert die Mod im Spiel."
+  "extendedhotkeys.scroll": "Scroll",
+  "extendedhotkeys.setting.disableMod": "Disable Mod",
+  "extendedhotkeys.setting.disableMod.description": "Disable the mod globally.",
+  "extendedhotkeys.setting.netToolModeWheel": "Tool Mode Wheel",
+  "extendedhotkeys.setting.netToolModeWheel.description": "Scroll through NetTool modes.",
+  "extendedhotkeys.setting.elevationWheel": "Elevation Wheel",
+  "extendedhotkeys.setting.elevationWheel.description": "Increase/Decrease elevation.",
+  "extendedhotkeys.setting.anarchyMode": "Anarchy Mode",
+  "extendedhotkeys.setting.anarchyMode.description": "Toggle anarchy mode.",
+  "extendedhotkeys.setting.elevationReset": "Elevation Reset",
+  "extendedhotkeys.setting.elevationReset.description": "Resets elevation to ground floor.",
+  "extendedhotkeys.setting.elevationStepScroll": "Elevation Step Scroll",
+  "extendedhotkeys.setting.elevationStepScroll.description": "Scroll elevation step level.",
+  "extendedhotkeys.setting.netToolModes": "Tool Modes",
+  "extendedhotkeys.setting.netToolModes.description": "Hop through net tool modes."
 }
