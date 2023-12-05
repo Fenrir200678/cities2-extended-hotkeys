@@ -2058,6 +2058,8 @@
     use_data_update_default(react, "extendedHotkeys.enableAnarchyMode", setEnableAnarchyMode);
     const [enableElevationReset, setEnableElevationReset] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableElevationReset", setEnableElevationReset);
+    const [enableElevationStepScroll, setEnableElevationStepScroll] = react.useState(true);
+    use_data_update_default(react, "extendedHotkeys.enableElevationStepScroll", setEnableElevationStepScroll);
     const [expandNTMGroup, setExpandNTMGroup] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.expandNTMGroup", setExpandNTMGroup);
     const [enableNTMGroup, setEnableNTMGroup] = react.useState(true);
@@ -2099,8 +2101,8 @@
         id: 12,
         label: translations["elevationStepScroll"],
         description: translations["elevationStepScroll.description"],
-        isChecked: true,
-        hotkey: "ALT + Mouse-R"
+        isChecked: enableElevationStepScroll,
+        hotkey: "ALT + Mouse-Click-R"
       },
       {
         id: 5,
