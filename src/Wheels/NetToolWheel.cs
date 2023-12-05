@@ -29,7 +29,7 @@ namespace ExtendedHotkeys.MouseWheels
                     m_CameraController = cameraController;
                 }
 
-                if (IsHoldingKey(m_Settings.NetToolKeyCode))
+                if (IsHoldingKey(KeyCode.LeftControl))
                 {
                     m_CameraController.inputEnabled = false;
                     if (m_CameraMap != null)

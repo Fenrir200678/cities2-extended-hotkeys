@@ -1,9 +1,21 @@
 {
-  "version": "0.6.0",
-
-  // GENERAL
+  "Version": "0.2.0",
   "DisableMod": false,
-  "NetToolKeyCode": 304,
-  "SnappingKeyCode": 306,
-  "ElevationCode": 308
+  "EnableNetToolWheel": true,
+  "EnableElevationWheel": true,
+  "EnableNetToolHotkeys": true,
+  "EnableSnappingWheel": true,
+  "EnableAnarchyMode": false,
+  "EnableElevationReset": true,
+  "EnableElevationStepScroll": true,
+  "ExpandNTMGroup": true,
+  "EnableNTMGroup": true,
+  "EnableNTMStraight": true,
+  "EnableNTMSimpleCurve": true,
+  "EnableNTMComplexCurve": true,
+  "EnableNTMContinuous": true,
+  "EnableNTMGrid": true,
+  "NetToolKeyCode": 306,
+  "SnappingKeyCode": 304,
+  "ElevationKeyCode": 308
 }

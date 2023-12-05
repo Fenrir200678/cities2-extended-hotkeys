@@ -28,7 +28,7 @@ namespace ExtendedHotkeys.MouseWheels
                     m_CameraController = cameraController;
                 }
 
-                if (IsHoldingKey(m_Settings.ElevationKeyCode))
+                if (IsHoldingKey(KeyCode.LeftAlt))
                 {
                     m_CameraController.inputEnabled = false;
                     if (m_CameraMap != null)

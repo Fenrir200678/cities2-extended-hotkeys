@@ -249,7 +249,7 @@ const ExtendedHotkeysUI = ({ react }) => {
             id: 4, label: translations['elevationReset'], description: translations['elevationReset.description'], isChecked: enableElevationReset, hotkey: "POS1"
         },
         {
-            id: 12, label: translations['elevationStepScroll'], description: translations['elevationStepScroll.description'], isChecked: enableElevationStepScroll, hotkey: "ALT + Mouse-R"
+            id: 12, label: translations['elevationStepScroll'], description: translations['elevationStepScroll.description'], isChecked: enableElevationStepScroll, hotkey: "ALT + Mouse-Click-R"
         },
         {
             id: 5, label: translations['netToolModes'], description: translations['netToolModes.description'], expanded: expandNTMGroup, isChecked: enableNTMGroup, children: [
