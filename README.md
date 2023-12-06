@@ -22,16 +22,11 @@ For now you can't set them yourself. But this will be added later as a feature.
 
 
 ## Mouse Wheels
-
 - **NetTool Mode Wheel**
 	- CTRL+Scroll: Change net tool mode (straight, curve, complex curve, continious, grid)
 	- Upgrade tool is going to be added soon (technically not a NetTool)
 - **Elevation Wheel**
 	- ALT+Scroll: Change elevation (up, down)
-
-More planned wheels coming soon:
-- Brush Wheel for Terrain Tools and Tree Tools
-- Rotation Wheel for Prop Tools and Building Tools
 
 ## Hotkeys
 
@@ -42,6 +37,11 @@ More planned wheels coming soon:
 - CTRL + R: Set net tool to continious mode
 - CTRL + T: Set net tool to grid mode
 - POS1: Reset elevation to 0 (If dev mode is activated uses END key instead)
+
+## In Development
+- Customizable Hotkeys
+- Brush Wheel for Terrain Tools and Tree Tools
+- Rotation Wheel for Prop Tools and Building Tools
 
 ## Requirements
 - Cities Skylines II
