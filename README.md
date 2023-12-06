@@ -48,3 +48,8 @@ Join our discord community: [https://discord.gg/M9rgRtGcRa](https://discord.gg/M
 3. Change path to your Cities Skylines II game folder
 4. Choose the correct BepInEx version
 5. It copies the dll to your BepInEx plugins folder automatically
+
+## Credits
+- Thanks **cptimus-code** for his C# knowledge and help
+- Thanks to **captain_on_coit** for HookUI and help with JSX and React
+- Thanks to **Bruceyboy24804** for testing and feedback
