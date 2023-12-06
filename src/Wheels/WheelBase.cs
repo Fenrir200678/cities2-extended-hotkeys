@@ -1,10 +1,10 @@
 ﻿using Game.Input;
-using Game.Prefabs;
 using Game.Tools;
-using Game;
 using UnityEngine;
 using ExtendedHotkeys.Settings;
 using Unity.Entities;
+using Game.SceneFlow;
+using cohtml.Net;
 
 namespace ExtendedHotkeys.Wheels
 {
@@ -14,9 +14,13 @@ namespace ExtendedHotkeys.Wheels
         protected readonly ToolSystem m_ToolSystem;
         protected readonly EntityQuery m_SoundQuery;
         protected readonly LocalSettingsItem m_Settings;
+        protected readonly View m_View;
 
-        protected readonly ProxyActionMap m_CameraMap;
         protected readonly ProxyAction m_MouseZoomAction;
+        protected readonly ProxyActionMap m_CameraMap;
+
+        protected bool m_IsInProgress;
+        public bool IsActive => m_IsInProgress;
 
         protected WheelBase(ToolSystem toolSystem, NetToolSystem netToolSystem, EntityQuery soundQuery, LocalSettingsItem settings)
         {
@@ -27,6 +31,8 @@ namespace ExtendedHotkeys.Wheels
 
             m_CameraMap = InputManager.instance.FindActionMap("Camera");
             m_MouseZoomAction = m_CameraMap.FindAction("Zoom Mouse");
+            m_View = GameManager.instance.userInterface.view.View;
+            m_IsInProgress = false;
         }
 
         public abstract void HandleAction();

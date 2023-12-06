@@ -1,6 +1,5 @@
 ﻿using ExtendedHotkeys.Settings;
 using ExtendedHotkeys.Wheels;
-using Game;
 using Game.Audio;
 using Game.Prefabs;
 using Game.Tools;
@@ -11,8 +10,6 @@ namespace ExtendedHotkeys.MouseWheels
 {
     internal class ElevationToolWheel: WheelBase
     {
-        CameraController m_CameraController;
-
         public ElevationToolWheel(ToolSystem toolSystem, NetToolSystem netToolSystem, EntityQuery soundQuery, LocalSettingsItem settings)
             : base(toolSystem, netToolSystem, soundQuery, settings)
         {
@@ -21,37 +18,33 @@ namespace ExtendedHotkeys.MouseWheels
 
         public override void HandleAction()
         {
-            if (m_Settings.EnableElevationWheel && m_ToolSystem.activeTool is NetToolSystem)
+            if (m_Settings.EnableElevationWheel && m_CameraMap != null)
             {
-                if (m_CameraController == null && CameraController.TryGet(out CameraController cameraController))
-                {
-                    m_CameraController = cameraController;
-                }
+                // Disable wheel action if NetTool is not active
+                if (m_ToolSystem.activeTool is not NetToolSystem)
+                    return; 
 
                 if (IsHoldingKey(KeyCode.LeftAlt))
                 {
-                    m_CameraController.inputEnabled = false;
-                    if (m_CameraMap != null)
+                    m_IsInProgress = true;
+
+                    if (IsZoomingOut())
                     {
-                        if (IsZoomingOut())
-                        {
-                            m_NetToolSystem.ElevationUp();
-                            ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
-                            AudioManager.instance.PlayUISound(soundData.m_NetElevationUpSound);
-                        }
-                        else if (IsZoomingIn())
-                        {
-                            m_NetToolSystem.ElevationDown();
-                            ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
-                            AudioManager.instance.PlayUISound(soundData.m_NetElevationDownSound);
-                        }
+                        m_NetToolSystem.ElevationUp();
+                        ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
+                        AudioManager.instance.PlayUISound(soundData.m_NetElevationUpSound);
                     }
+                    else if (IsZoomingIn())
+                    {
+                        m_NetToolSystem.ElevationDown();
+                        ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
+                        AudioManager.instance.PlayUISound(soundData.m_NetElevationDownSound);
+                    }
+
+                    return;
                 }
 
-                if (Input.GetKeyUp(m_Settings.ElevationKeyCode))
-                {
-                    m_CameraController.inputEnabled = true;
-                }
+                m_IsInProgress = false;
             }
         }
     }

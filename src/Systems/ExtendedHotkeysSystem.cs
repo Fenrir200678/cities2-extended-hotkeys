@@ -9,6 +9,7 @@ using Game.SceneFlow;
 using Game.Tools;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,12 +25,14 @@ namespace ExtendedHotkeys.Systems
         private ToolUXSoundSettingsData m_SoundData;
 
         private readonly List<WheelBase> m_Wheels = [];
+        private CameraController m_CameraController;
 
         public LocalSettings m_LocalSettings;
         public LocalSettingsItem m_Settings;
 
         public bool m_LocalSettingsLoaded = false;
         public bool hotkeyPressed = false;
+        private bool IsAnyWheelActive => m_Wheels.Any(wheel => wheel.IsActive);
 
         // Available KeyCodes a user can choose for hotkeys
         public List<KeyCode> availableKeyCodes = [
@@ -67,13 +70,31 @@ namespace ExtendedHotkeys.Systems
         [Preserve]
         protected override void OnUpdate()
         {
-            if (m_LocalSettingsLoaded && m_ToolSystem != null && InputManager.instance.mouseOnScreen)
+            if (m_CameraController == null && CameraController.TryGet(out CameraController cameraController))
+            {
+                m_CameraController = cameraController;
+            }
+
+            if (m_LocalSettingsLoaded && m_ToolSystem != null && m_CameraController != null && InputManager.instance.mouseOnScreen)
             {
                 foreach (WheelBase wheel in m_Wheels)
                 {
                     wheel.HandleAction();
                 }
             }
+
+            if (IsAnyWheelActive)
+            {
+                m_CameraController.inputEnabled = false;
+            } else
+            {
+                m_CameraController.inputEnabled = true;
+            }
+        }
+
+        private void CreateCameraMoveReplacement()
+        {
+            
         }
 
         private void CreateNetToolBindings()

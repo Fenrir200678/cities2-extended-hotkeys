@@ -3,6 +3,22 @@
 Extends the default hotkeys of Cities Skylines II with some useful ones.
 For now you can't set them yourself. But this will be added later as a feature.
 
+## Updates
+- v0.2.3
+	- Fixed camera movement issue
+- v0.2.2
+	- Fixed wrong hotkeys for net tool wheel and anarchy mode
+- v0.2.1
+	- Fixed wrong languages
+- v0.2.0
+	- New Feature: Mouse wheels
+		- Net Tool Mouse Wheel: Change net tool mode (straight, curve, complex curve, continious, grid)
+		- Elevation Mouse Wheel: Change elevation (up, down)
+	- New Hotkey:
+		- Anarchy Mode (ALT-A): Toggle anarchy mode on/off
+- v0.1.0
+	- Initial release
+
 ## Hotkeys
 
 ### Net Tool

@@ -243,10 +243,10 @@ const ExtendedHotkeysUI = ({ react }) => {
 
     const staticHotkeysSettingsData = [
         {
-            id: 11, label: translations['anarchyMode'], description: translations['anarchyMode.description'], isChecked: enableAnarchyMode, hotkey: "CTRL + A",
+            id: 11, label: translations['anarchyMode'], description: translations['anarchyMode.description'], isChecked: enableAnarchyMode, hotkey: "ALT + A",
         },
         {
-            id: 4, label: translations['elevationReset'], description: translations['elevationReset.description'], isChecked: enableElevationReset, hotkey: "POS1"
+            id: 4, label: translations['elevationReset'], description: translations['elevationReset.description'], isChecked: enableElevationReset, hotkey: "POS1/END"
         },
         {
             id: 12, label: translations['elevationStepScroll'], description: translations['elevationStepScroll.description'], isChecked: enableElevationStepScroll, hotkey: "ALT + Mouse-Click-R"
