@@ -25,6 +25,7 @@ For now you can't set them yourself. But this will be added later as a feature.
 
 - **NetTool Mode Wheel**
 	- CTRL+Scroll: Change net tool mode (straight, curve, complex curve, continious, grid)
+	- Upgrade tool is going to be added soon (technically not a NetTool)
 - **Elevation Wheel**
 	- ALT+Scroll: Change elevation (up, down)
 
