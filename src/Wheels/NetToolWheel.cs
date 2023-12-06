@@ -1,7 +1,5 @@
-﻿using cohtml.Net;
-using ExtendedHotkeys.Settings;
+﻿using ExtendedHotkeys.Settings;
 using ExtendedHotkeys.Wheels;
-using Game;
 using Game.Audio;
 using Game.Prefabs;
 using Game.Tools;

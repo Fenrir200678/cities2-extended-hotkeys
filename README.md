@@ -6,6 +6,7 @@ For now you can't set them yourself. But this will be added later as a feature.
 ## Updates
 - v0.2.3
 	- Fixed camera movement issue
+	- Added missing HookUI dependency
 - v0.2.2
 	- Fixed wrong hotkeys for net tool wheel and anarchy mode
 - v0.2.1
