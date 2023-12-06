@@ -29,7 +29,7 @@ namespace ExtendedHotkeys.MouseWheels
 
                     if (IsZoomingIn())
                     {
-                        if (m_NetToolSystem.mode == NetToolSystem.Mode.Grid)
+                        if (m_NetToolSystem.mode == NetToolSystem.Mode.Replace)
                         {
                             m_NetToolSystem.mode = NetToolSystem.Mode.Straight;
                             m_View.TriggerEvent("tool.selectToolMode", 0);
@@ -50,8 +50,8 @@ namespace ExtendedHotkeys.MouseWheels
                     {
                         if (m_NetToolSystem.mode == NetToolSystem.Mode.Straight)
                         {
-                            m_NetToolSystem.mode = NetToolSystem.Mode.Grid;
-                            m_View.TriggerEvent("tool.selectToolMode", 4);
+                            m_NetToolSystem.mode = NetToolSystem.Mode.Replace;
+                            m_View.TriggerEvent("tool.selectToolMode", 5);
                             ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
                             AudioManager.instance.PlayUISound(soundData.m_NetStartSound, 0.5f);
                         }

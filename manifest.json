@@ -1,6 +1,6 @@
 {
   "name": "ExtendedHotkeys",
-  "version_number": "0.2.3",
+  "version_number": "0.3.0",
   "website_url": "https://github.com/89pleasure/cities2-extended-hotkeys",
   "description": "Adds practical mouse wheel functions and other hotkeys to make playing easier.",
   "dependencies": [

@@ -4,6 +4,8 @@ Extends the default hotkeys of Cities Skylines II with some useful ones.
 For now you can't set them yourself. But this will be added later as a feature.
 
 ## Updates
+- v0.3.0
+	- Added replace/upgrade tool to net tool wheel
 - v0.2.3
 	- Fixed camera movement issue
 	- Added missing HookUI dependency
