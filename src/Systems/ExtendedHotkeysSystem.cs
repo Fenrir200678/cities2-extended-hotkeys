@@ -1,5 +1,4 @@
-﻿using ExtendedHotkeys.MouseWheels;
-using ExtendedHotkeys.Settings;
+﻿using ExtendedHotkeys.Settings;
 using ExtendedHotkeys.Wheels;
 using Game;
 using Game.Audio;
@@ -21,6 +20,7 @@ namespace ExtendedHotkeys.Systems
     {
         private ToolSystem m_ToolSystem;
         private NetToolSystem m_NetToolSystem;
+        private TerrainToolSystem m_TerrainToolSystem;
         private ExtendedHotKeysTranslationSystem m_CustomTranslationSystem;
         private ToolUXSoundSettingsData m_SoundData;
 
@@ -28,9 +28,9 @@ namespace ExtendedHotkeys.Systems
         private CameraController m_CameraController;
 
         public LocalSettings m_LocalSettings;
-        public LocalSettingsItem m_Settings;
+        private LocalSettingsItem m_Settings;
 
-        public bool m_LocalSettingsLoaded = false;
+        private bool m_LocalSettingsLoaded;
         public bool hotkeyPressed = false;
         private bool IsAnyWheelActive => m_Wheels.Any(wheel => wheel.IsActive);
 
@@ -54,6 +54,7 @@ namespace ExtendedHotkeys.Systems
 
             m_ToolSystem = World.GetOrCreateSystemManaged<ToolSystem>();
             m_NetToolSystem = World.GetExistingSystemManaged<NetToolSystem>();
+            m_TerrainToolSystem = World.GetExistingSystemManaged<TerrainToolSystem>();
             m_CustomTranslationSystem = World.GetOrCreateSystemManaged<ExtendedHotKeysTranslationSystem>();
             EntityQuery soundQuery = GetEntityQuery(ComponentType.ReadOnly<ToolUXSoundSettingsData>());
 
@@ -63,6 +64,8 @@ namespace ExtendedHotkeys.Systems
             // Add mouse wheels
             m_Wheels.Add(new NetToolWheel(m_ToolSystem, m_NetToolSystem, soundQuery, m_Settings));
             m_Wheels.Add(new ElevationToolWheel(m_ToolSystem, m_NetToolSystem, soundQuery, m_Settings));
+            m_Wheels.Add(new TerrainToolBrushSizeWheel(m_ToolSystem, m_TerrainToolSystem, soundQuery, m_Settings));
+            m_Wheels.Add(new TerrainToolBrushStrengthWheel(m_ToolSystem, m_TerrainToolSystem, soundQuery, m_Settings));
 
             UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}] System created!");
         }
@@ -83,18 +86,12 @@ namespace ExtendedHotkeys.Systems
                 }
             }
 
-            if (IsAnyWheelActive)
-            {
-                m_CameraController.inputEnabled = false;
-            } else
-            {
-                m_CameraController.inputEnabled = true;
-            }
+            m_CameraController.inputEnabled = !IsAnyWheelActive;
         }
 
         private void CreateCameraMoveReplacement()
         {
-            
+            throw new NotImplementedException();
         }
 
         private void CreateNetToolBindings()
@@ -131,7 +128,7 @@ namespace ExtendedHotkeys.Systems
                 m_LocalSettingsLoaded = true;
                 m_Settings = m_LocalSettings.Settings;
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 UnityEngine.Debug.Log($"Error loading settings: {e.Message}");
             }
@@ -194,7 +191,7 @@ namespace ExtendedHotkeys.Systems
                 return;
 
             float newElevation = m_NetToolSystem.elevationStep / 2.0f;
-            newElevation = (newElevation < 1.25f == true) ? 10f : newElevation;
+            newElevation = newElevation < 1.25f ? 10f : newElevation;
 
             cohtml.Net.View ui = GameManager.instance.userInterface.view.View;
             ui.TriggerEvent("tool.setElevationStep", newElevation);

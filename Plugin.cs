@@ -22,14 +22,14 @@ namespace ExtendedHotkeys
             // Plugin startup logic
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded! Patched methods " + patchedMethods.Length);
 
-            foreach (var patchedMethod in patchedMethods)
+            foreach (MethodBase patchedMethod in patchedMethods)
             {
                 Logger.LogInfo($"Patched method: {patchedMethod.Module.Name}:{patchedMethod.Name}");
             }
         }
     }
 
-    public class ExtendedHotkeysUI : UIExtension
+    public sealed class ExtendedHotkeysUI : UIExtension
     {
         public ExtendedHotkeysUI()
         {

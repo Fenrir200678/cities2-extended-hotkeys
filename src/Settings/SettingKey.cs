@@ -16,5 +16,7 @@
         EnableNTMGrid = 10,
         EnableAnarchyMode = 11,
         EnableElevationStepScroll = 12,
+        EnableBrushSizeWheel = 13,
+        EnableBrushStrengthWheel = 14,
     }
 }

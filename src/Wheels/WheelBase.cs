@@ -10,22 +10,20 @@ namespace ExtendedHotkeys.Wheels
 {
     public abstract class WheelBase
     {
-        protected readonly NetToolSystem m_NetToolSystem;
         protected readonly ToolSystem m_ToolSystem;
-        protected readonly EntityQuery m_SoundQuery;
+        protected EntityQuery m_SoundQuery;
         protected readonly LocalSettingsItem m_Settings;
         protected readonly View m_View;
 
-        protected readonly ProxyAction m_MouseZoomAction;
+        private readonly ProxyAction m_MouseZoomAction;
         protected readonly ProxyActionMap m_CameraMap;
 
         protected bool m_IsInProgress;
         public bool IsActive => m_IsInProgress;
 
-        protected WheelBase(ToolSystem toolSystem, NetToolSystem netToolSystem, EntityQuery soundQuery, LocalSettingsItem settings)
+        protected WheelBase(ToolSystem toolSystem, EntityQuery soundQuery, LocalSettingsItem settings)
         {
             m_ToolSystem = toolSystem;
-            m_NetToolSystem = netToolSystem;
             m_SoundQuery = soundQuery;
             m_Settings = settings;
 
@@ -54,7 +52,7 @@ namespace ExtendedHotkeys.Wheels
             return mouseZoomValue > GetZoomFactor(sensitivityFactor);
         }
 
-        private float GetZoomFactor(WheelSensitivityFactor factor)
+        private static float GetZoomFactor(WheelSensitivityFactor factor)
         {
             return factor switch
             {

@@ -11,6 +11,8 @@ namespace ExtendedHotkeys.Settings
         public bool DisableMod { get; set; } = false;
         public bool EnableNetToolWheel { get; set; } = true;
         public bool EnableElevationWheel { get; set; } = true;
+        public bool EnableBrushStrengthWheel { get; set; } = true;
+        public bool EnableBrushSizeWheel { get; set; } = true;
         public bool EnableNetToolHotkeys { get; set; } = true;
         public bool EnableSnappingWheel { get; set; } = true;
         public bool EnableAnarchyMode { get; set; } = true;
