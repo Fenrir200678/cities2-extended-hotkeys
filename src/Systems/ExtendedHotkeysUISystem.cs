@@ -23,11 +23,13 @@ namespace ExtendedHotkeys.Systems
             m_ExtendedHotkeysSystem = World.GetOrCreateSystemManaged<ExtendedHotkeysSystem>();
             m_CustomTranslationSystem = World.GetOrCreateSystemManaged<ExtendedHotKeysTranslationSystem>();
             m_Settings = m_ExtendedHotkeysSystem.m_LocalSettings.Settings;
-            toggleActions = new()
+            toggleActions = new Dictionary<SettingKey, Action>
             {
                 { SettingKey.DisableMod, () => m_Settings.DisableMod = !m_Settings.DisableMod },
                 { SettingKey.EnableNetToolWheel, () => m_Settings.EnableNetToolWheel = !m_Settings.EnableNetToolWheel },
                 { SettingKey.EnableElevationWheel, () => m_Settings.EnableElevationWheel = !m_Settings.EnableElevationWheel },
+                { SettingKey.EnableBrushStrengthWheel, () => m_Settings.EnableBrushStrengthWheel = !m_Settings.EnableBrushStrengthWheel },
+                { SettingKey.EnableBrushSizeWheel, () => m_Settings.EnableBrushSizeWheel = !m_Settings.EnableBrushSizeWheel },
                 { SettingKey.EnableSnappingWheel, () => m_Settings.EnableSnappingWheel = !m_Settings.EnableSnappingWheel },
                 { SettingKey.EnableElevationReset, () => m_Settings.EnableElevationReset = !m_Settings.EnableElevationReset },
                 { SettingKey.EnableElevationStepScroll, () => m_Settings.EnableElevationStepScroll = !m_Settings.EnableElevationStepScroll },
@@ -40,12 +42,12 @@ namespace ExtendedHotkeys.Systems
                 { SettingKey.EnableNTMGrid, () => m_Settings.EnableNTMGrid = !m_Settings.EnableNTMGrid}
             };
 
-            expandActions = new()
+            expandActions = new Dictionary<SettingKey, Action>
             {
                 { SettingKey.ExpandNTMGroup, () => m_Settings.ExpandNTMGroup = !m_Settings.ExpandNTMGroup },
             };
 
-            m_SettingLocalization = new()
+            m_SettingLocalization = new Dictionary<string, string>
             {
                 // GENERAL
                 { "disableMod", m_CustomTranslationSystem.GetTranslation("setting.disableMod", "Disable Mod") },
@@ -56,6 +58,12 @@ namespace ExtendedHotkeys.Systems
                 { "netToolModeWheel.description", m_CustomTranslationSystem.GetTranslation("setting.netToolModeWheel.description", "Scroll through NetTool modes.") },
                 { "elevationWheel", m_CustomTranslationSystem.GetTranslation("setting.elevationWheel", "Elevation Wheel") },
                 { "elevationWheel.description", m_CustomTranslationSystem.GetTranslation("setting.elevationWheel.description", "Increase/Decrease elevation.") },
+                { "brushStrength", m_CustomTranslationSystem.GetTranslation("setting.brushStrength", "Brush Strength Wheel") },
+                { "brushStrength.description", m_CustomTranslationSystem.GetTranslation("setting.brushStrength.description", "Increase/Decrease brush strength.") },
+                { "brushSize", m_CustomTranslationSystem.GetTranslation("setting.brushSize", "Brush Size Wheel") },
+                { "brushSize.description", m_CustomTranslationSystem.GetTranslation("setting.brushSize.description", "Increase/Decrease brush size.") },
+                { "snappingWheel", m_CustomTranslationSystem.GetTranslation("setting.snappingWheel", "Snapping Wheel") },
+                { "snappingWheel.description", m_CustomTranslationSystem.GetTranslation("setting.snappingWheel.description", "Increase/Decrease snapping.") },
 
                 // HOTKEYS
                 { "anarchyMode", m_CustomTranslationSystem.GetTranslation("setting.anarchyMode", "Anarchy Mode") },
@@ -76,26 +84,28 @@ namespace ExtendedHotkeys.Systems
                 { "netToolModes.grid", m_CustomTranslationSystem.GetTranslation("Tools.TOOL_MODE[Grid]", "Grid") },
             };
 
-            AddUpdateBinding(new GetterValueBinding<Dictionary<string, string>>(kGroup, "translations", () => m_SettingLocalization, new DictionaryWriter<string, string>(null, null).Nullable(), null));
-            AddUpdateBinding(new GetterValueBinding<string>(kGroup, "version", () => MyPluginInfo.PLUGIN_VERSION, null, null));
+            AddUpdateBinding(new GetterValueBinding<Dictionary<string, string>>(kGroup, "translations", () => m_SettingLocalization, new DictionaryWriter<string, string>().Nullable()));
+            AddUpdateBinding(new GetterValueBinding<string>(kGroup, "version", () => MyPluginInfo.PLUGIN_VERSION));
 
-            /// GENERAL
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "disableMod", () => m_Settings.DisableMod, null, null));
+            // GENERAL
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "disableMod", () => m_Settings.DisableMod));
 
-            /// Mouse Wheels
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNetToolWheel", () => m_Settings.EnableNetToolWheel, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableElevationWheel", () => m_Settings.EnableElevationWheel, null, null));
+            // Mouse Wheels
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNetToolWheel", () => m_Settings.EnableNetToolWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableElevationWheel", () => m_Settings.EnableElevationWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableBrushStrengthWheel", () => m_Settings.EnableBrushStrengthWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableBrushSizeWheel", () => m_Settings.EnableBrushSizeWheel));
 
-            /// Hotkeys
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableAnarchyMode", () => m_Settings.EnableAnarchyMode, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableElevationReset", () => m_Settings.EnableElevationReset, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "expandNTMGroup", () => m_Settings.ExpandNTMGroup, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMGroup", () => m_Settings.EnableNTMGroup, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMStraight", () => m_Settings.EnableNTMStraight, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMSimpleCurve", () => m_Settings.EnableNTMSimpleCurve, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMComplexCurve", () => m_Settings.EnableNTMComplexCurve, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMContinuous", () => m_Settings.EnableNTMContinuous, null, null));
-            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMGrid", () => m_Settings.EnableNTMGrid, null, null));
+            // Hotkeys
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableAnarchyMode", () => m_Settings.EnableAnarchyMode));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableElevationReset", () => m_Settings.EnableElevationReset));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "expandNTMGroup", () => m_Settings.ExpandNTMGroup));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMGroup", () => m_Settings.EnableNTMGroup));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMStraight", () => m_Settings.EnableNTMStraight));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMSimpleCurve", () => m_Settings.EnableNTMSimpleCurve));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMComplexCurve", () => m_Settings.EnableNTMComplexCurve));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMContinuous", () => m_Settings.EnableNTMContinuous));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNTMGrid", () => m_Settings.EnableNTMGrid));
 
             AddBinding(new TriggerBinding<int>(kGroup, "onToggle", OnToggle));
             AddBinding(new TriggerBinding<int>(kGroup, "onExpand", OnExpand));

@@ -1,15 +1,16 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ExtendedHotkeys.Settings
 {
     public class LocalSettings
     {
-        private LocalSettingsItem m_Settings;
-        public LocalSettingsItem Settings => m_Settings;
+        public LocalSettingsItem Settings { get; private set; }
 
         public void Init() => Load();
         public void Reload() => Load();
@@ -17,22 +18,25 @@ namespace ExtendedHotkeys.Settings
         /// <summary>
         /// Save settings to a local JSON file
         /// </summary>
-        /// <param name="settings"></param>
         public async Task Save()
         {
             string assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string filename = "UserSettings.json";
-            string fullFilePath = Path.Combine(assemblyDirectory, filename);
+            const string filename = "UserSettings.json";
 
-            try
+            if (assemblyDirectory != null)
             {
-                string updatedSettingsJson = JsonConvert.SerializeObject(m_Settings);
-                using StreamWriter writer = new(fullFilePath, false, Encoding.UTF8);
-                await writer.WriteAsync(updatedSettingsJson);
-            }
-            catch (System.Exception e)
-            {
-                UnityEngine.Debug.Log($"Error saving settings: {e.Message}");
+                string fullFilePath = Path.Combine(assemblyDirectory, filename);
+
+                try
+                {
+                    string updatedSettingsJson = JsonConvert.SerializeObject(Settings);
+                    await using StreamWriter writer = new(fullFilePath, false, Encoding.UTF8);
+                    await writer.WriteAsync(updatedSettingsJson);
+                }
+                catch (Exception e)
+                {
+                    Debug.Log($"Error saving settings: {e.Message}");
+                }
             }
         }
 
@@ -42,22 +46,26 @@ namespace ExtendedHotkeys.Settings
         private void Load()
         {
             string assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string filename = "UserSettings.json";
+            const string filename = "UserSettings.json";
+
+            if (assemblyDirectory == null)
+                return;
+
             string fullFilePath = Path.Combine(assemblyDirectory, filename);
 
             if (!File.Exists(fullFilePath))
             {
-                UnityEngine.Debug.Log("No user settings found. Use default settings.");
+                Debug.Log("No user settings found. Use default settings.");
                 fullFilePath = Path.Combine(assemblyDirectory, "DefaultSettings.json");
                 if (!File.Exists(fullFilePath))
                 {
-                    UnityEngine.Debug.Log($"Error loading settings: {fullFilePath} does not exist.");
+                    Debug.Log($"Error loading settings: {fullFilePath} does not exist.");
                     return;
                 }
             }
             else
             {
-                UnityEngine.Debug.Log("User settings successfully loaded.");
+                Debug.Log("User settings successfully loaded.");
             }
 
             try
@@ -68,12 +76,12 @@ namespace ExtendedHotkeys.Settings
 
                 if (localSettingsItem != null)
                 {
-                    m_Settings = localSettingsItem;
+                    Settings = localSettingsItem;
                 }
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                UnityEngine.Debug.Log($"Error loading settings: {e.Message}");
+                Debug.Log($"Error loading settings: {e.Message}");
             }
         }
     }

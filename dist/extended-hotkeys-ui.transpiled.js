@@ -25,9 +25,9 @@
     mod
   ));
 
-  // node_modules/react/cjs/react.development.js
+  // ../../node_modules/react/cjs/react.development.js
   var require_react_development = __commonJS({
-    "node_modules/react/cjs/react.development.js"(exports, module) {
+    "../../node_modules/react/cjs/react.development.js"(exports, module) {
       "use strict";
       if (true) {
         (function() {
@@ -1898,9 +1898,9 @@
     }
   });
 
-  // node_modules/react/index.js
+  // ../../node_modules/react/index.js
   var require_react = __commonJS({
-    "node_modules/react/index.js"(exports, module) {
+    "../../node_modules/react/index.js"(exports, module) {
       "use strict";
       if (false) {
         module.exports = null;
@@ -1910,22 +1910,22 @@
     }
   });
 
-  // src/UI/ExtendedHotkeysUI.jsx
+  // ExtendedHotkeysUI.jsx
   var import_react5 = __toESM(require_react());
 
-  // node_modules/hookui-framework/src/components/panel.jsx
+  // ../../node_modules/hookui-framework/src/components/panel.jsx
   var import_react = __toESM(require_react());
 
-  // node_modules/hookui-framework/src/components/field.jsx
+  // ../../node_modules/hookui-framework/src/components/field.jsx
   var import_react2 = __toESM(require_react());
 
-  // node_modules/hookui-framework/src/components/meter.jsx
+  // ../../node_modules/hookui-framework/src/components/meter.jsx
   var import_react3 = __toESM(require_react());
 
-  // node_modules/hookui-framework/src/components/button.jsx
+  // ../../node_modules/hookui-framework/src/components/button.jsx
   var import_react4 = __toESM(require_react());
 
-  // node_modules/hookui-framework/src/helpers/use-data-update.js
+  // ../../node_modules/hookui-framework/src/helpers/use-data-update.js
   var useDataUpdate = (react, event, onUpdate, deps) => {
     return react.useEffect(() => {
       const updateEvent = event + ".update";
@@ -1943,7 +1943,7 @@
   };
   var use_data_update_default = useDataUpdate;
 
-  // src/UI/styles.js
+  // styles.js
   var many2 = (...styles) => {
     return styles.join(" ");
   };
@@ -1960,7 +1960,7 @@
   var CLASS_UNCHECKED2 = "unchecked";
   var CLASS_CHECKED2 = "checked";
 
-  // src/UI/ExtendedHotkeysUI.jsx
+  // ExtendedHotkeysUI.jsx
   var $Panel = ({ title, children, react }) => {
     const [maxHeight, setMaxHeight] = react.useState(0);
     react.useEffect(() => {
@@ -1995,7 +1995,7 @@
       e.stopPropagation();
       e.preventDefault();
     };
-    const onMouseUp = (e) => {
+    const onMouseUp = () => {
       setDragging(false);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
@@ -2036,13 +2036,13 @@
         window.removeEventListener("mouseup", onMouseUp);
       };
     }, [dragging]);
-    return /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel_YqS active-infoview-panel_aTq", style: draggableStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "header_H_U header_Bpo child-opacity-transition_nkS", onMouseDown }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "title-bar_PF4 title_Hfc" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "icon-space_h_f" }, version && /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "var(--fontSizeXS)", color: "rgba(255, 255, 255, 0.5)" } }, versionString)), /* @__PURE__ */ import_react5.default.createElement("div", { className: "title_SVH title_zQN" }, title), /* @__PURE__ */ import_react5.default.createElement("button", { class: "button_bvQ button_bvQ close-button_wKK", onClick: onClose }, /* @__PURE__ */ import_react5.default.createElement("div", { class: "tinted-icon_iKo icon_PhD", style: closeStyle })))), /* @__PURE__ */ import_react5.default.createElement(
+    return /* @__PURE__ */ import_react5.default.createElement("div", { className: "panel_YqS active-infoview-panel_aTq", style: draggableStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "header_H_U header_Bpo child-opacity-transition_nkS", onMouseDown }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "title-bar_PF4 title_Hfc" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "icon-space_h_f" }, version && /* @__PURE__ */ import_react5.default.createElement("div", { style: { fontSize: "var(--fontSizeXS)", color: "rgba(255, 255, 255, 0.5)" } }, versionString)), /* @__PURE__ */ import_react5.default.createElement("div", { className: "title_SVH title_zQN" }, title), /* @__PURE__ */ import_react5.default.createElement("button", { className: "button_bvQ button_bvQ close-button_wKK", onClick: onClose }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "tinted-icon_iKo icon_PhD", style: closeStyle })))), /* @__PURE__ */ import_react5.default.createElement(
       "div",
       {
-        class: "content_XD5 content_AD7 child-opacity-transition_nkS content_BIL",
+        className: "content_XD5 content_AD7 child-opacity-transition_nkS content_BIL",
         style: { height: { maxHeight } + "rem", overflowY: "scroll", flexDirection: "column" }
       },
-      /* @__PURE__ */ import_react5.default.createElement("div", { class: "section_sop section_gUk statistics-menu_y86", style: { width: "100%" } }, /* @__PURE__ */ import_react5.default.createElement("div", { class: "content_flM content_owQ first_l25 last_ZNw" }, /* @__PURE__ */ import_react5.default.createElement("div", { class: "scrollable_DXr y_SMM track-visible-y_RCA scrollable_By7" }, /* @__PURE__ */ import_react5.default.createElement("div", { class: "content_gqa", onScroll: handleScroll }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "content_Q1O" }, children), /* @__PURE__ */ import_react5.default.createElement("div", { class: "bottom-padding_JS3" })), /* @__PURE__ */ import_react5.default.createElement("div", { class: "track_e3O y_SMM" }, /* @__PURE__ */ import_react5.default.createElement("div", { id: "scrollbar", class: "thumb_Cib y_SMM", style: scrollableStyle })))))
+      /* @__PURE__ */ import_react5.default.createElement("div", { className: "section_sop section_gUk statistics-menu_y86", style: { width: "100%" } }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "content_flM content_owQ first_l25 last_ZNw" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "scrollable_DXr y_SMM track-visible-y_RCA scrollable_By7" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "content_gqa", onScroll: handleScroll }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "content_Q1O" }, children), /* @__PURE__ */ import_react5.default.createElement("div", { className: "bottom-padding_JS3" })), /* @__PURE__ */ import_react5.default.createElement("div", { className: "track_e3O y_SMM" }, /* @__PURE__ */ import_react5.default.createElement("div", { id: "scrollbar", className: "thumb_Cib y_SMM", style: scrollableStyle })))))
     ));
   };
   var ExtendedHotkeysUI = ({ react }) => {
@@ -2054,6 +2054,10 @@
     use_data_update_default(react, "extendedHotkeys.enableNetToolWheel", setEnableNetToolWheel);
     const [enableElevationWheel, setEnableElevationWheel] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableElevationWheel", setEnableElevationWheel);
+    const [enableBrushSizeWheel, setEnableBrushSizeWheel] = react.useState(true);
+    use_data_update_default(react, "extendedHotkeys.enableBrushSizeWheel", setEnableBrushSizeWheel);
+    const [enableBrushStrengthWheel, setEnableBrushStrengthWheel] = react.useState(true);
+    use_data_update_default(react, "extendedHotkeys.enableBrushStrengthWheel", setEnableBrushStrengthWheel);
     const [enableAnarchyMode, setEnableAnarchyMode] = react.useState(false);
     use_data_update_default(react, "extendedHotkeys.enableAnarchyMode", setEnableAnarchyMode);
     const [enableElevationReset, setEnableElevationReset] = react.useState(true);
@@ -2079,7 +2083,9 @@
     ];
     const mouseWheelSettingsData = [
       { id: 1, label: translations["netToolModeWheel"], description: translations["netToolModeWheel.description"], isChecked: enableNetToolWheel, keyCode: 1 },
-      { id: 2, label: translations["elevationWheel"], description: translations["elevationWheel.description"], isChecked: enableElevationWheel, keyCode: 2 }
+      { id: 2, label: translations["elevationWheel"], description: translations["elevationWheel.description"], isChecked: enableElevationWheel, keyCode: 2 },
+      { id: 13, label: translations["brushSize"], description: translations["brushSize.description"], isChecked: enableBrushSizeWheel, keyCode: 1 },
+      { id: 14, label: translations["brushStrength"], description: translations["brushStrength.description"], isChecked: enableBrushStrengthWheel, keyCode: 2 }
       // { id: 3, label: "Snapping Wheel", description: "Switch through snapping templates.", isChecked: enableElevationWheel, keyCode: 0 },
     ];
     const staticHotkeysSettingsData = [
@@ -2088,14 +2094,14 @@
         label: translations["anarchyMode"],
         description: translations["anarchyMode.description"],
         isChecked: enableAnarchyMode,
-        hotkey: "CTRL + A"
+        hotkey: "ALT + A"
       },
       {
         id: 4,
         label: translations["elevationReset"],
         description: translations["elevationReset.description"],
         isChecked: enableElevationReset,
-        hotkey: "POS1"
+        hotkey: "POS1/END"
       },
       {
         id: 12,
@@ -2132,7 +2138,7 @@
       const nestingStyle = { "--nesting": nested };
       const headerContentStyle = { marginTop: "-1rem" };
       const keyCodeStyle = { fontSize: "var(--fontSizeS)", fontWeight: "normal", textAlign: "right", paddingRight: "10rem" };
-      const decsriptionStyle = { fontSize: "var(--fontSizeXS)" };
+      const descriptionStyle = { fontSize: "var(--fontSizeXS)" };
       const borderColor = isChecked ? "rgba(134, 205, 144, 1.000000)" : "rgba(134, 205, 144, 0.250000)";
       const borderStyle = {
         borderTopColor: borderColor,
@@ -2161,14 +2167,14 @@
         }
         return null;
       };
-      return /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_FOLDOUT, CLASS_TT_DISABLE_MOUSE_STATES), style: nestingStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_HEADER, CLASS_TT_ITEMMOUSESTATES, CLASS_TT_ITEM_FOCUSED) }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_ICON, onClick: onToggle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHILD_TOGGLE, CLASS_TT_ITEMMOUSESTATES, checked_class), style: borderStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHECKMARK, checked_class) }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER_CONTENT, style: headerContentStyle, onClick: onExpandAction }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_LABEL }, label), description && /* @__PURE__ */ import_react5.default.createElement("div", { style: decsriptionStyle }, description)), renderWheelKeyCodes(), renderHotkeys(), children && children.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { class: "tinted-icon_iKo toggle_RV4 toggle_yQv", style: maskImageStyle, onClick: onExpandAction })), renderChildren());
+      return /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_FOLDOUT, CLASS_TT_DISABLE_MOUSE_STATES), style: nestingStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_HEADER, CLASS_TT_ITEMMOUSESTATES, CLASS_TT_ITEM_FOCUSED) }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_ICON, onClick: onToggle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHILD_TOGGLE, CLASS_TT_ITEMMOUSESTATES, checked_class), style: borderStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHECKMARK, checked_class) }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER_CONTENT, style: headerContentStyle, onClick: onExpandAction }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_LABEL }, label), description && /* @__PURE__ */ import_react5.default.createElement("div", { style: descriptionStyle }, description)), renderWheelKeyCodes(), renderHotkeys(), children && children.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { className: "tinted-icon_iKo toggle_RV4 toggle_yQv", style: maskImageStyle, onClick: onExpandAction })), renderChildren());
     };
     const SettingsList = ({ name, description, settings }) => {
-      const decsriptionStyle = {
+      const descriptionStyle = {
         fontSize: "var(--fontSizeS)",
         fontWeight: "normal"
       };
-      return /* @__PURE__ */ import_react5.default.createElement("div", { class: "statistics-category-item_qVI" }, /* @__PURE__ */ import_react5.default.createElement("div", { class: "header_Ld7" }, name), description && /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER, style: decsriptionStyle }, description), /* @__PURE__ */ import_react5.default.createElement("div", { class: "items_AIY" }, settings.map((setting) => /* @__PURE__ */ import_react5.default.createElement(
+      return /* @__PURE__ */ import_react5.default.createElement("div", { className: "statistics-category-item_qVI" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "header_Ld7" }, name), description && /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER, style: descriptionStyle }, description), /* @__PURE__ */ import_react5.default.createElement("div", { className: "items_AIY" }, settings.map((setting) => /* @__PURE__ */ import_react5.default.createElement(
         Setting,
         {
           key: setting.id,
