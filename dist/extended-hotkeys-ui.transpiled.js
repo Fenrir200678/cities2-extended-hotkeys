@@ -25,9 +25,9 @@
     mod
   ));
 
-  // ../../node_modules/react/cjs/react.development.js
+  // node_modules/react/cjs/react.development.js
   var require_react_development = __commonJS({
-    "../../node_modules/react/cjs/react.development.js"(exports, module) {
+    "node_modules/react/cjs/react.development.js"(exports, module) {
       "use strict";
       if (true) {
         (function() {
@@ -1898,9 +1898,9 @@
     }
   });
 
-  // ../../node_modules/react/index.js
+  // node_modules/react/index.js
   var require_react = __commonJS({
-    "../../node_modules/react/index.js"(exports, module) {
+    "node_modules/react/index.js"(exports, module) {
       "use strict";
       if (false) {
         module.exports = null;
@@ -1910,22 +1910,22 @@
     }
   });
 
-  // ExtendedHotkeysUI.jsx
+  // src/UI/ExtendedHotkeysUI.jsx
   var import_react5 = __toESM(require_react());
 
-  // ../../node_modules/hookui-framework/src/components/panel.jsx
+  // node_modules/hookui-framework/src/components/panel.jsx
   var import_react = __toESM(require_react());
 
-  // ../../node_modules/hookui-framework/src/components/field.jsx
+  // node_modules/hookui-framework/src/components/field.jsx
   var import_react2 = __toESM(require_react());
 
-  // ../../node_modules/hookui-framework/src/components/meter.jsx
+  // node_modules/hookui-framework/src/components/meter.jsx
   var import_react3 = __toESM(require_react());
 
-  // ../../node_modules/hookui-framework/src/components/button.jsx
+  // node_modules/hookui-framework/src/components/button.jsx
   var import_react4 = __toESM(require_react());
 
-  // ../../node_modules/hookui-framework/src/helpers/use-data-update.js
+  // node_modules/hookui-framework/src/helpers/use-data-update.js
   var useDataUpdate = (react, event, onUpdate, deps) => {
     return react.useEffect(() => {
       const updateEvent = event + ".update";
@@ -1943,7 +1943,7 @@
   };
   var use_data_update_default = useDataUpdate;
 
-  // styles.js
+  // src/UI/styles.js
   var many2 = (...styles) => {
     return styles.join(" ");
   };
@@ -1960,7 +1960,7 @@
   var CLASS_UNCHECKED2 = "unchecked";
   var CLASS_CHECKED2 = "checked";
 
-  // ExtendedHotkeysUI.jsx
+  // src/UI/ExtendedHotkeysUI.jsx
   var $Panel = ({ title, children, react }) => {
     const [maxHeight, setMaxHeight] = react.useState(0);
     react.useEffect(() => {
@@ -2052,12 +2052,22 @@
     use_data_update_default(react, "extendedHotkeys.disableMod", setDisableMod);
     const [enableNetToolWheel, setEnableNetToolWheel] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableNetToolWheel", setEnableNetToolWheel);
+    const [enableNetToolReverse, setEnableNetToolReverse] = react.useState(false);
+    use_data_update_default(react, "extendedHotkeys.enableNetToolReverse", setEnableNetToolReverse);
     const [enableElevationWheel, setEnableElevationWheel] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableElevationWheel", setEnableElevationWheel);
+    const [enableElevationReverse, setEnableElevationReverse] = react.useState(false);
+    use_data_update_default(react, "extendedHotkeys.enableElevationReverse", setEnableElevationReverse);
     const [enableBrushSizeWheel, setEnableBrushSizeWheel] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableBrushSizeWheel", setEnableBrushSizeWheel);
+    const [enableBrushSizeReverse, setEnableBrushSizeReverse] = react.useState(false);
+    use_data_update_default(react, "extendedHotkeys.enableBrushSizeReverse", setEnableBrushSizeReverse);
     const [enableBrushStrengthWheel, setEnableBrushStrengthWheel] = react.useState(true);
     use_data_update_default(react, "extendedHotkeys.enableBrushStrengthWheel", setEnableBrushStrengthWheel);
+    const [enableBrushStrengthReverse, setEnableBrushStrengthReverse] = react.useState(false);
+    use_data_update_default(react, "extendedHotkeys.enableBrushStrengthReverse", setEnableBrushStrengthReverse);
+    const [expandReverseGroup, setExpandReverseGroup] = react.useState(false);
+    use_data_update_default(react, "extendedHotkeys.expandReverseGroup", setExpandReverseGroup);
     const [enableAnarchyMode, setEnableAnarchyMode] = react.useState(false);
     use_data_update_default(react, "extendedHotkeys.enableAnarchyMode", setEnableAnarchyMode);
     const [enableElevationReset, setEnableElevationReset] = react.useState(true);
@@ -2082,11 +2092,46 @@
       { id: 0, label: translations["disableMod"], description: translations["disableMod.description"], isChecked: disableMod }
     ];
     const mouseWheelSettingsData = [
-      { id: 1, label: translations["netToolModeWheel"], description: translations["netToolModeWheel.description"], isChecked: enableNetToolWheel, keyCode: 1 },
-      { id: 2, label: translations["elevationWheel"], description: translations["elevationWheel.description"], isChecked: enableElevationWheel, keyCode: 2 },
-      { id: 13, label: translations["brushSize"], description: translations["brushSize.description"], isChecked: enableBrushSizeWheel, keyCode: 1 },
-      { id: 14, label: translations["brushStrength"], description: translations["brushStrength.description"], isChecked: enableBrushStrengthWheel, keyCode: 2 }
-      // { id: 3, label: "Snapping Wheel", description: "Switch through snapping templates.", isChecked: enableElevationWheel, keyCode: 0 },
+      {
+        id: 1,
+        label: translations["netToolModeWheel"],
+        description: translations["netToolModeWheel.description"],
+        isChecked: enableNetToolWheel,
+        keyCode: 1
+      },
+      {
+        id: 2,
+        label: translations["elevationWheel"],
+        description: translations["elevationWheel.description"],
+        isChecked: enableElevationWheel,
+        keyCode: 2
+      },
+      {
+        id: 15,
+        label: translations["brushSize"],
+        description: translations["brushSize.description"],
+        isChecked: enableBrushSizeWheel,
+        keyCode: 1
+      },
+      {
+        id: 16,
+        label: translations["brushStrength"],
+        description: translations["brushStrength.description"],
+        isChecked: enableBrushStrengthWheel,
+        keyCode: 2
+      },
+      {
+        id: 19,
+        label: translations["reverseScroll"],
+        description: translations["reverseScroll.description"],
+        expanded: expandReverseGroup,
+        children: [
+          { id: 13, label: translations["netToolModeWheel"], isChecked: enableNetToolReverse },
+          { id: 14, label: translations["elevationWheel"], isChecked: enableElevationReverse },
+          { id: 17, label: translations["brushSize"], isChecked: enableBrushSizeReverse },
+          { id: 18, label: translations["brushStrength"], isChecked: enableBrushStrengthReverse }
+        ]
+      }
     ];
     const staticHotkeysSettingsData = [
       {
@@ -2167,7 +2212,7 @@
         }
         return null;
       };
-      return /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_FOLDOUT, CLASS_TT_DISABLE_MOUSE_STATES), style: nestingStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_HEADER, CLASS_TT_ITEMMOUSESTATES, CLASS_TT_ITEM_FOCUSED) }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_ICON, onClick: onToggle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHILD_TOGGLE, CLASS_TT_ITEMMOUSESTATES, checked_class), style: borderStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHECKMARK, checked_class) }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER_CONTENT, style: headerContentStyle, onClick: onExpandAction }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_LABEL }, label), description && /* @__PURE__ */ import_react5.default.createElement("div", { style: descriptionStyle }, description)), renderWheelKeyCodes(), renderHotkeys(), children && children.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { className: "tinted-icon_iKo toggle_RV4 toggle_yQv", style: maskImageStyle, onClick: onExpandAction })), renderChildren());
+      return /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_FOLDOUT, CLASS_TT_DISABLE_MOUSE_STATES), style: nestingStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_HEADER, CLASS_TT_ITEMMOUSESTATES, CLASS_TT_ITEM_FOCUSED) }, isChecked != void 0 && /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_ICON, onClick: onToggle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHILD_TOGGLE, CLASS_TT_ITEMMOUSESTATES, checked_class), style: borderStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: many2(CLASS_TT_CHECKMARK, checked_class) }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_HEADER_CONTENT, style: headerContentStyle, onClick: onExpandAction }, /* @__PURE__ */ import_react5.default.createElement("div", { className: CLASS_TT_LABEL }, label), description && /* @__PURE__ */ import_react5.default.createElement("div", { style: descriptionStyle }, description)), renderWheelKeyCodes(), renderHotkeys(), children && children.length > 0 && /* @__PURE__ */ import_react5.default.createElement("div", { className: "tinted-icon_iKo toggle_RV4 toggle_yQv", style: maskImageStyle, onClick: onExpandAction })), renderChildren());
     };
     const SettingsList = ({ name, description, settings }) => {
       const descriptionStyle = {

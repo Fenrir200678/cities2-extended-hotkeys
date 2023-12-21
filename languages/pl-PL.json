@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "Aumentar/diminuir o tamanho do pincel",
   "extendedhotkeys.setting.anarchyMode": "Modo Anarquia",
   "extendedhotkeys.setting.anarchyMode.description": "Alternar o modo anarquia",
+  "extendedhotkeys.setting.reverseScroll": "Zarezerwuj kierunek przewijania",
+  "extendedhotkeys.setting.reverseScroll.description": "Zmienia kierunek przewijania kółka myszy.",
   "extendedhotkeys.setting.elevationReset": "Reposição da elevação",
   "extendedhotkeys.setting.elevationReset.description": "Repõe a elevação para o rés do chão",
   "extendedhotkeys.setting.elevationStepScroll": "Elevation Step Scroll",

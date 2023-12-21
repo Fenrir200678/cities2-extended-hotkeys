@@ -1,5 +1,6 @@
 ﻿using ExtendedHotkeys.Settings;
 using Game.Audio;
+using Game.Input;
 using Game.Prefabs;
 using Game.Tools;
 using Unity.Entities;
@@ -9,11 +10,13 @@ namespace ExtendedHotkeys.Wheels
 {
     internal class ElevationToolWheel: WheelBase
     {
+        public ProxyAction m_RightMouseClick;
         private readonly NetToolSystem m_NetToolSystem;
         public ElevationToolWheel(ToolSystem toolSystem, NetToolSystem netToolSystem, EntityQuery soundQuery, LocalSettingsItem settings)
             : base(toolSystem, soundQuery, settings)
         {
             m_NetToolSystem = netToolSystem;
+            m_RightMouseClick = InputManager.instance.FindAction("Tool", "Mouse Cancel");
             UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}]: {ToString()}");
         }
 
@@ -28,15 +31,16 @@ namespace ExtendedHotkeys.Wheels
 
             if (IsHoldingKey(KeyCode.LeftAlt))
             {
+                m_RightMouseClick.shouldBeEnabled = false;
                 m_IsInProgress = true;
 
-                if (IsZoomingOut())
+                if (m_Settings.EnableElevationReverse ? IsZoomingIn() : IsZoomingOut())
                 {
                     m_NetToolSystem.ElevationUp();
                     ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
                     AudioManager.instance.PlayUISound(soundData.m_NetElevationUpSound);
                 }
-                else if (IsZoomingIn())
+                else if (m_Settings.EnableElevationReverse ? IsZoomingOut() : IsZoomingIn())
                 {
                     m_NetToolSystem.ElevationDown();
                     ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
@@ -46,6 +50,7 @@ namespace ExtendedHotkeys.Wheels
                 return;
             }
 
+            m_RightMouseClick.shouldBeEnabled = true;
             m_IsInProgress = false;
         }
     }

@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "Увеличение/уменьшение размера кисти",
   "extendedhotkeys.setting.anarchyMode": "Режим анархии",
   "extendedhotkeys.setting.anarchyMode.description": "Включить режим анархии",
+  "extendedhotkeys.setting.reverseScroll": "Резервное направление прокрутки",
+  "extendedhotkeys.setting.reverseScroll.description": "Отменяет направление прокрутки на маузерах.",
   "extendedhotkeys.setting.elevationReset": "Сброс высоты",
   "extendedhotkeys.setting.elevationReset.description": "Сбрасывает высоту до первого этажа",
   "extendedhotkeys.setting.elevationStepScroll": "Прокрутка шага возвышения",

@@ -16,7 +16,12 @@
         EnableNTMGrid = 10,
         EnableAnarchyMode = 11,
         EnableElevationStepScroll = 12,
-        EnableBrushSizeWheel = 13,
-        EnableBrushStrengthWheel = 14,
+        EnableNetToolReverse = 13,
+        EnableElevationReverse = 14,
+        EnableBrushSizeWheel = 15,
+        EnableBrushStrengthWheel = 16,
+        EnableBrushSizeReverse = 17,
+        EnableBrushStrengthReverse = 18,
+        ExpandReverseGroup = 19,
     }
 }

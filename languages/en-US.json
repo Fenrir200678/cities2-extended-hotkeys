@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "Increase/Decrease brush size.",
   "extendedhotkeys.setting.anarchyMode": "Anarchy Mode",
   "extendedhotkeys.setting.anarchyMode.description": "Toggle anarchy mode.",
+  "extendedhotkeys.setting.reverseScroll": "Reverse scroll direction",
+  "extendedhotkeys.setting.reverseScroll.description": "Reverse the direction of the mouse wheel.",
   "extendedhotkeys.setting.elevationReset": "Elevation Reset",
   "extendedhotkeys.setting.elevationReset.description": "Resets elevation to ground floor.",
   "extendedhotkeys.setting.elevationStepScroll": "Elevation Step Scroll",

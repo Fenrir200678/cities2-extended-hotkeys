@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "增加/减少笔刷大小。",
   "extendedhotkeys.setting.anarchyMode": "无政府模式",
   "extendedhotkeys.setting.anarchyMode.description": "切换无政府模式。",
+  "extendedhotkeys.setting.reverseScroll": "反转滚动方向",
+  "extendedhotkeys.setting.reverseScroll.description": "反转鼠标滚轮的方向。",
   "extendedhotkeys.setting.elevationReset": "海拔重置",
   "extendedhotkeys.setting.elevationReset.description": "将标高重置为地面层。",
   "extendedhotkeys.setting.elevationStepScroll": "升降步进卷轴",

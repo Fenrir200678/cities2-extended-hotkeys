@@ -30,7 +30,7 @@ namespace ExtendedHotkeys.Wheels
             {
                 m_IsInProgress = true;
 
-                if (IsZoomingIn())
+                if (m_Settings.EnableBrushStrengthReverse ? IsZoomingOut() : IsZoomingIn())
                 {
                     switch (m_TerrainToolSystem.brushStrength)
                     {
@@ -48,7 +48,7 @@ namespace ExtendedHotkeys.Wheels
                     ToolUXSoundSettingsData soundData = m_SoundQuery.GetSingleton<ToolUXSoundSettingsData>();
                     AudioManager.instance.PlayUISound(soundData.m_NetStartSound, 0.5f);
                 }
-                else if (IsZoomingOut())
+                else if (m_Settings.EnableBrushStrengthReverse ? IsZoomingIn() : IsZoomingOut())
                 {
                     switch (m_TerrainToolSystem.brushStrength)
                     {
