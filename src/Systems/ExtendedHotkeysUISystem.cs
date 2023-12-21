@@ -27,9 +27,13 @@ namespace ExtendedHotkeys.Systems
             {
                 { SettingKey.DisableMod, () => m_Settings.DisableMod = !m_Settings.DisableMod },
                 { SettingKey.EnableNetToolWheel, () => m_Settings.EnableNetToolWheel = !m_Settings.EnableNetToolWheel },
+                { SettingKey.EnableNetToolReverse, () => m_Settings.EnableNetToolReverse = !m_Settings.EnableNetToolReverse },
                 { SettingKey.EnableElevationWheel, () => m_Settings.EnableElevationWheel = !m_Settings.EnableElevationWheel },
+                { SettingKey.EnableElevationReverse, () => m_Settings.EnableElevationReverse = !m_Settings.EnableElevationReverse },
                 { SettingKey.EnableBrushStrengthWheel, () => m_Settings.EnableBrushStrengthWheel = !m_Settings.EnableBrushStrengthWheel },
                 { SettingKey.EnableBrushSizeWheel, () => m_Settings.EnableBrushSizeWheel = !m_Settings.EnableBrushSizeWheel },
+                { SettingKey.EnableBrushStrengthReverse, () => m_Settings.EnableBrushStrengthReverse = !m_Settings.EnableBrushStrengthReverse },
+                { SettingKey.EnableBrushSizeReverse, () => m_Settings.EnableBrushSizeReverse = !m_Settings.EnableBrushSizeReverse },
                 { SettingKey.EnableSnappingWheel, () => m_Settings.EnableSnappingWheel = !m_Settings.EnableSnappingWheel },
                 { SettingKey.EnableElevationReset, () => m_Settings.EnableElevationReset = !m_Settings.EnableElevationReset },
                 { SettingKey.EnableElevationStepScroll, () => m_Settings.EnableElevationStepScroll = !m_Settings.EnableElevationStepScroll },
@@ -45,6 +49,7 @@ namespace ExtendedHotkeys.Systems
             expandActions = new Dictionary<SettingKey, Action>
             {
                 { SettingKey.ExpandNTMGroup, () => m_Settings.ExpandNTMGroup = !m_Settings.ExpandNTMGroup },
+                { SettingKey.ExpandReverseGroup, () => m_Settings.ExpandReverseGroup = !m_Settings.ExpandReverseGroup }
             };
 
             m_SettingLocalization = new Dictionary<string, string>
@@ -64,6 +69,8 @@ namespace ExtendedHotkeys.Systems
                 { "brushSize.description", m_CustomTranslationSystem.GetTranslation("setting.brushSize.description", "Increase/Decrease brush size.") },
                 { "snappingWheel", m_CustomTranslationSystem.GetTranslation("setting.snappingWheel", "Snapping Wheel") },
                 { "snappingWheel.description", m_CustomTranslationSystem.GetTranslation("setting.snappingWheel.description", "Increase/Decrease snapping.") },
+                { "reverseScroll", m_CustomTranslationSystem.GetTranslation("setting.reverseScroll", "Reverse scroll direction.") },
+                { "reverseScroll.description", m_CustomTranslationSystem.GetTranslation("setting.reverseScroll.description", "Reverse scroll direction.") },
 
                 // HOTKEYS
                 { "anarchyMode", m_CustomTranslationSystem.GetTranslation("setting.anarchyMode", "Anarchy Mode") },
@@ -92,9 +99,14 @@ namespace ExtendedHotkeys.Systems
 
             // Mouse Wheels
             AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNetToolWheel", () => m_Settings.EnableNetToolWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableNetToolReverse", () => m_Settings.EnableNetToolReverse));
             AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableElevationWheel", () => m_Settings.EnableElevationWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableElevationReverse", () => m_Settings.EnableElevationReverse));
             AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableBrushStrengthWheel", () => m_Settings.EnableBrushStrengthWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableBrushStrengthReverse", () => m_Settings.EnableBrushStrengthReverse));
             AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableBrushSizeWheel", () => m_Settings.EnableBrushSizeWheel));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableBrushSizeReverse", () => m_Settings.EnableBrushSizeReverse));
+            AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "expandReverseGroup", () => m_Settings.ExpandReverseGroup));
 
             // Hotkeys
             AddUpdateBinding(new GetterValueBinding<bool>(kGroup, "enableAnarchyMode", () => m_Settings.EnableAnarchyMode));

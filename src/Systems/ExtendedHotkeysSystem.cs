@@ -34,7 +34,10 @@ namespace ExtendedHotkeys.Systems
         private LocalSettingsItem m_Settings;
 
         private bool m_LocalSettingsLoaded;
-        private bool IsAnyWheelActive => m_Wheels.Any(wheel => wheel.IsActive);
+        public bool hotkeyPressed = false;
+
+        private WheelBase ActiveWheel => m_Wheels.Find((WheelBase wheel) => wheel.IsActive);
+        private bool IsAnyWheelActive => m_Wheels.Any((WheelBase wheel) => wheel.IsActive);
 
         // Available KeyCodes a user can choose for hotkeys
         public List<KeyCode> availableKeyCodes =
@@ -82,12 +85,15 @@ namespace ExtendedHotkeys.Systems
         [Preserve]
         protected override void OnUpdate()
         {
+            if (!m_LocalSettingsLoaded)
+                return;
+
             if (m_CameraController == null && CameraController.TryGet(out CameraController cameraController))
             {
                 m_CameraController = cameraController;
             }
 
-            if (m_LocalSettingsLoaded && m_ToolSystem != null && m_CameraController != null && InputManager.instance.mouseOnScreen)
+            if (m_ToolSystem != null && m_CameraController != null && InputManager.instance.mouseOnScreen)
             {
                 foreach (WheelBase wheel in m_Wheels)
                 {

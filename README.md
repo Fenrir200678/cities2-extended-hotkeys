@@ -4,6 +4,12 @@ Extends the default hotkeys of Cities Skylines II with some useful ones.
 For now you can't set them yourself. But this will be added later as a feature.
 
 ## Updates
+v0.5.0
+	- Added brush wheel for terrain tools @fenrir200678
+	- Updated UI for reverse scroll options
+v0.4.0
+	-Added wheel reverse options for net tool and elevation wheel
+	- Mouse right-click no longer aborts net tool placement while in elevation wheel mode
 - v0.3.0
 	- Added replace/upgrade tool to net tool wheel
 - v0.2.3
@@ -21,7 +27,6 @@ For now you can't set them yourself. But this will be added later as a feature.
 		- Anarchy Mode (ALT-A): Toggle anarchy mode on/off
 - v0.1.0
 	- Initial release
-
 
 ## Mouse Wheels
 - **NetTool Mode Wheel**
@@ -65,6 +70,7 @@ Join our discord community: [https://discord.gg/M9rgRtGcRa](https://discord.gg/M
 5. It copies the dll to your BepInEx plugins folder automatically
 
 ## Credits
-- Thanks **cptimus-code** for his C# knowledge and help
+- Thanks to **@Fenrir200678** for his contribution to the mod
+- Thanks **@optimus-code** for his C# knowledge and help
 - Thanks to **captain_on_coit** for HookUI and help with JSX and React
 - Thanks to **Bruceyboy24804** for testing and feedback

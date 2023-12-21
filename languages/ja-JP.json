@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "ブラシサイズを増減する。",
   "extendedhotkeys.setting.anarchyMode": "アナーキー・モード",
   "extendedhotkeys.setting.anarchyMode.description": "アナーキーモードを切り替える。",
+  "extendedhotkeys.setting.reverseScroll": "スクロール方向逆",
+  "extendedhotkeys.setting.reverseScroll.description": "マウスホイールのスクロール方向を変更します。",
   "extendedhotkeys.setting.elevationReset": "標高リセット",
   "extendedhotkeys.setting.elevationReset.description": "標高を地形の高さにリセットする。",
   "extendedhotkeys.setting.elevationStepScroll": "標高ステップスクロール",

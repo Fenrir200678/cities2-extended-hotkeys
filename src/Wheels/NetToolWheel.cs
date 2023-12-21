@@ -29,7 +29,7 @@ namespace ExtendedHotkeys.Wheels
             {
                 m_IsInProgress = true;
 
-                if (IsZoomingIn())
+                if (m_Settings.EnableNetToolReverse ? IsZoomingOut() : IsZoomingIn())
                 {
                     if (m_NetToolSystem.mode == NetToolSystem.Mode.Replace)
                     {
@@ -48,7 +48,7 @@ namespace ExtendedHotkeys.Wheels
                         AudioManager.instance.PlayUISound(soundData.m_NetStartSound, 0.5f);
                     }
                 }
-                else if (IsZoomingOut())
+                else if (m_Settings.EnableNetToolReverse ? IsZoomingIn() : IsZoomingOut())
                 {
                     if (m_NetToolSystem.mode == NetToolSystem.Mode.Straight)
                     {

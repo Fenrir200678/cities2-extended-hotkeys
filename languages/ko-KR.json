@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "브러쉬 크기를 증가/감소합니다.",
   "extendedhotkeys.setting.anarchyMode": "아나키 모드",
   "extendedhotkeys.setting.anarchyMode.description": "무정부 상태 모드 전환.",
+  "extendedhotkeys.setting.reverseScroll": "스크롤 방향 예약",
+  "extendedhotkeys.setting.reverseScroll.description": "마우스 휠의 스크롤 방향을 변경합니다.",
   "extendedhotkeys.setting.elevationReset": "고도 재설정",
   "extendedhotkeys.setting.elevationReset.description": "고도를 1층으로 재설정합니다.",
   "extendedhotkeys.setting.elevationStepScroll": "고도 단계 스크롤",

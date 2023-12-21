@@ -12,6 +12,8 @@
   "extendedhotkeys.setting.brushSize.description": "Aumenta/diminuisce la dimensione del pennello.",
   "extendedhotkeys.setting.anarchyMode": "Modalità anarchia",
   "extendedhotkeys.setting.anarchyMode.description": "Attiva la modalità anarchia.",
+  "extendedhotkeys.setting.reverseScroll": "Invertire la rotellina del mouse",
+  "extendedhotkeys.setting.reverseScroll.description": "Inverte la direzione della rotellina del mouse.",
   "extendedhotkeys.setting.elevationReset": "Elevation Reset",
   "extendedhotkeys.setting.elevationReset.description": "Ripristina l'elevazione al piano terra.",
   "extendedhotkeys.setting.elevationStepScroll": "Scorrimento del gradino di elevazione",
