@@ -1,4 +1,5 @@
-﻿using ExtendedHotkeys.Settings;
+﻿using cohtml.Net;
+using ExtendedHotkeys.Settings;
 using ExtendedHotkeys.Wheels;
 using Game;
 using Game.Audio;
@@ -10,10 +11,10 @@ using Game.UI.InGame;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Scripting;
 using Debug = UnityEngine.Debug;
 
 
@@ -33,6 +34,8 @@ namespace ExtendedHotkeys.Systems
         public LocalSettings m_LocalSettings;
         private LocalSettingsItem m_Settings;
 
+        private PrefabSystem m_PrefabSystem;
+
         private bool m_LocalSettingsLoaded;
         public bool hotkeyPressed = false;
 
@@ -51,23 +54,25 @@ namespace ExtendedHotkeys.Systems
             KeyCode.Space
         ];
 
-        [Preserve]
+
+        [UnityEngine.Scripting.Preserve]
         public ExtendedHotkeysSystem()
         {
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         protected override void OnCreate()
         {
             base.OnCreate();
             LoadSettings();
-            
+
             m_ToolSystem = World.GetOrCreateSystemManaged<ToolSystem>();
             m_NetToolSystem = World.GetExistingSystemManaged<NetToolSystem>();
             m_TerrainToolSystem = World.GetExistingSystemManaged<TerrainToolSystem>();
             World.GetOrCreateSystemManaged<ExtendedHotKeysTranslationSystem>();
             m_GameScreenUISystem = World.GetExistingSystemManaged<GameScreenUISystem>();
             EntityQuery soundQuery = GetEntityQuery(ComponentType.ReadOnly<ToolUXSoundSettingsData>());
+            m_PrefabSystem = World.GetOrCreateSystemManaged<PrefabSystem>();
 
             // Add hotkeys
             CreateNetToolBindings();
@@ -82,7 +87,7 @@ namespace ExtendedHotkeys.Systems
             Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}] System created!");
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         protected override void OnUpdate()
         {
             if (!m_LocalSettingsLoaded)
@@ -135,65 +140,51 @@ namespace ExtendedHotkeys.Systems
 
         private void CreateOpenToolWindowBindings()
         {
-            // TODO: Add support for custom key bindings from user selection and probably get the entities the proper way
+            // TODO: Add support for custom key bindings from user selection
             // For now, we'll just use e,r & t to open the most used tool windows that are available at the start of the game
-            AddBinding("OpenZoning", binding: "<Keyboard>/e", callback: (_) => OnOpenToolWindow(_, "zoning"));
-            AddBinding("OpenRoads", binding: "<Keyboard>/r", callback: (_) => OnOpenToolWindow(_, "roads"));
-            AddBinding("OpenTerrain", binding: "<Keyboard>/t", callback: (_) => OnOpenToolWindow(_, "terrain"));
+            AddBinding("OpenRoads", binding: "<Keyboard>/r", callback: (_) => OnOpenToolWindow(_, "Roads"));
+            AddBinding("OpenZones", binding: "<Keyboard>/e", callback: (_) => OnOpenToolWindow(_, "Zones"));
+            AddBinding("OpenLandscaping", binding: "<Keyboard>/t", callback: (_) => OnOpenToolWindow(_, "Landscaping"));
+            
             /*
-            AddCombinedBinding("OpenPower", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/4", callback: (_) => OnOpenToolWindow(_, "power"));
-            AddCombinedBinding("OpenWater", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/5", callback: (_) => OnOpenToolWindow(_, "water"));
-            AddCombinedBinding("OpenAreas", modifier: "<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "areas"));
-            AddCombinedBinding("OpenSpecialBuildings", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "specialBuildings"));
-            AddCombinedBinding("OpenHealthcare", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "healthcare"));
-            AddCombinedBinding("OpenGarbage", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "garbage"));
-            AddCombinedBinding("OpenEducation", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "education"));
-            AddCombinedBinding("OpenFireDepartment", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "fireDepartment"));
-            AddCombinedBinding("OpenPoliceDepartment", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "policeDepartment"));
-            AddCombinedBinding("OpenPublicTransport", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "publicTransport"));
-            AddCombinedBinding("OpenParks", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "parks"));
-            AddCombinedBinding("OpenCommunication", modifier:"<keyboard>/ctrl", binding: "TODO", callback: (_) => OnOpenToolWindow(_, "communication"));
+            AddCombinedBinding("OpenElectricity", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/4", callback: (_) => OnOpenToolWindow(_, "Electricity"));
+            AddCombinedBinding("OpenWaterAndSewage", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/5", callback: (_) => OnOpenToolWindow(_, "Water & Sewage"));
+            AddCombinedBinding("OpenHealthAndDeathcare", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Health & Deathcare"));
+            AddCombinedBinding("OpenGarbageManagement", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Garbage Management"));
+            AddCombinedBinding("OpenEducationAndResearch", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Education & Research"));
+            AddCombinedBinding("OpenFireAndRescue", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Fire & Rescue"));
+            AddCombinedBinding("OpenTransportation", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Transportation"));
+            AddCombinedBinding("OpenParksAndRecreation", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Parks & Recreation"));
+            AddCombinedBinding("OpenCommunications", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Communications"));
+
+            AddCombinedBinding("OpenSignatures", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Signatures"));
+            AddCombinedBinding("OpenPoliceAndAdministration", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Police & Administration"));
             */
         }
 
-        private static object GetEntityPayload(string menuName)
+        private Entity GetMenuEntity(string prefabName)
         {
-            return new
-            {
-                __Type = "Unity.Entities.Entity",
-                index = GetEntityIndex(menuName),
-                version = 1
-            };
-        }
+            EntityQuery assetMenuData = GetEntityQuery(ComponentType.ReadOnly<UIAssetMenuData>());
+            NativeArray<Entity> menuEntities = assetMenuData.ToEntityArray(Allocator.Temp);
+            Entity menuEntity = Entity.Null;
 
-        private static int GetEntityIndex(string menuName)
-        {
-            return menuName switch
+            foreach (Entity entity in menuEntities)
             {
-                "zoning" => 16944,
-                "areas" => 34467,
-                "specialBuildings" => 16993,
-                "roads" => 16941,
-                "power" => 16934,
-                "water" => 16943,
-                "healthcare" => 16937,
-                "garbage" => 16936,
-                "education" => 16933,
-                "fireDepartment" => 16935,
-                "policeDepartment" => 16940,
-                "publicTransport" => 16942,
-                "parks" => 16939,
-                "communication" => 16932,
-                "terrain" => 16938,
-                _ => 1
-            };
+                UIAssetMenuPrefab assetMenuPrefab = m_PrefabSystem.GetPrefab<UIAssetMenuPrefab>(entity);
+                if (assetMenuPrefab.name == prefabName)
+                {
+                    menuEntity = entity;
+                }
+            }
+
+            return menuEntity;
         }
 
         private void LoadSettings()
         {
             try
             {
-                m_LocalSettings = new LocalSettings();
+                m_LocalSettings = new();
                 m_LocalSettings.Init();
                 m_LocalSettingsLoaded = true;
                 m_Settings = m_LocalSettings.Settings;
@@ -204,19 +195,29 @@ namespace ExtendedHotkeys.Systems
             }
         }
 
-        private void OnOpenToolWindow(InputAction.CallbackContext _, string menuName)
+        private void OnOpenToolWindow(InputAction.CallbackContext _, string prefabName)
         {
-            cohtml.Net.View ui = GameManager.instance.userInterface.view.View;
-            bool isInPauseMenu = m_GameScreenUISystem.isMenuActive;
+            if (m_GameScreenUISystem.isMenuActive)
+                return;
             
-            if (isInPauseMenu)
+            View ui = GameManager.instance.userInterface.view.View;
+            Entity menuEntity = GetMenuEntity(prefabName);
+
+            if (menuEntity == Entity.Null)
             {
-                Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}]: Pause menu is active. Not opening tool window.");
+                Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}]: Could not find entity for prefab {prefabName}");
                 return;
             }
 
-            object selectedMenu = GetEntityPayload(menuName);
-            ui.TriggerEvent("toolbar.selectAssetMenu", selectedMenu);
+            // We need to convert the entity to a dynamic object to be able to pass it to the UI event handler
+            var menuObject = new
+            {
+                __Type = menuEntity.GetType().ToString(),
+                index = menuEntity.Index,
+                version = menuEntity.Version
+            };
+
+            ui.TriggerEvent("toolbar.selectAssetMenu", menuObject);
         }
 
         private void OnSetNetToolSystemMode(InputAction.CallbackContext _, NetToolSystem.Mode mode)
@@ -240,7 +241,7 @@ namespace ExtendedHotkeys.Systems
                 return;
 
             m_NetToolSystem.mode = mode;
-            cohtml.Net.View ui = GameManager.instance.userInterface.view.View;
+            View ui = GameManager.instance.userInterface.view.View;
             ui.TriggerEvent("tool.selectToolMode", (int)mode);
 
             AudioManager.instance.PlayUISound(m_SoundData.m_NetStartSound);
@@ -278,7 +279,7 @@ namespace ExtendedHotkeys.Systems
             float newElevation = m_NetToolSystem.elevationStep / 2.0f;
             newElevation = newElevation < 1.25f ? 10f : newElevation;
 
-            cohtml.Net.View ui = GameManager.instance.userInterface.view.View;
+            View ui = GameManager.instance.userInterface.view.View;
             ui.TriggerEvent("tool.setElevationStep", newElevation);
 
             EntityQuery uxSoundQuery = GetEntityQuery(ComponentType.ReadOnly<ToolUXSoundSettingsData>());
