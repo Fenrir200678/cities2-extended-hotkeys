@@ -6,6 +6,7 @@ using Game.Audio;
 using Game.Input;
 using Game.Prefabs;
 using Game.SceneFlow;
+using Game.Settings;
 using Game.Tools;
 using Game.UI.InGame;
 using System;
@@ -27,7 +28,7 @@ namespace ExtendedHotkeys.Systems
         private NetToolSystem m_NetToolSystem;
         private TerrainToolSystem m_TerrainToolSystem;
         private ToolUXSoundSettingsData m_SoundData;
-
+        
         private readonly List<WheelBase> m_Wheels = [];
         private CameraController m_CameraController;
 
@@ -145,21 +146,18 @@ namespace ExtendedHotkeys.Systems
             AddBinding("OpenRoads", binding: "<Keyboard>/r", callback: (_) => OnOpenToolWindow(_, "Roads"));
             AddBinding("OpenZones", binding: "<Keyboard>/e", callback: (_) => OnOpenToolWindow(_, "Zones"));
             AddBinding("OpenLandscaping", binding: "<Keyboard>/t", callback: (_) => OnOpenToolWindow(_, "Landscaping"));
-            
-            /*
             AddCombinedBinding("OpenElectricity", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/4", callback: (_) => OnOpenToolWindow(_, "Electricity"));
             AddCombinedBinding("OpenWaterAndSewage", modifier: "<keyboard>/ctrl", binding: "<Keyboard>/5", callback: (_) => OnOpenToolWindow(_, "Water & Sewage"));
-            AddCombinedBinding("OpenHealthAndDeathcare", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Health & Deathcare"));
-            AddCombinedBinding("OpenGarbageManagement", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Garbage Management"));
-            AddCombinedBinding("OpenEducationAndResearch", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Education & Research"));
-            AddCombinedBinding("OpenFireAndRescue", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Fire & Rescue"));
-            AddCombinedBinding("OpenTransportation", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Transportation"));
-            AddCombinedBinding("OpenParksAndRecreation", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Parks & Recreation"));
-            AddCombinedBinding("OpenCommunications", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Communications"));
-
-            AddCombinedBinding("OpenSignatures", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Signatures"));
-            AddCombinedBinding("OpenPoliceAndAdministration", modifier:"<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Police & Administration"));
-            */
+            AddCombinedBinding("OpenHealthAndDeathcare", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Health & Deathcare"));
+            AddCombinedBinding("OpenGarbageManagement", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Garbage Management"));
+            AddCombinedBinding("OpenEducationAndResearch", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Education & Research"));
+            AddCombinedBinding("OpenFireAndRescue", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Fire & Rescue"));
+            AddCombinedBinding("OpenTransportation", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Transportation"));
+            AddCombinedBinding("OpenParksAndRecreation", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Parks & Recreation"));
+            AddCombinedBinding("OpenCommunications", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Communications"));
+            AddCombinedBinding("OpenSignatures", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Signatures"));
+            AddCombinedBinding("OpenAreas", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Areas"));
+            AddCombinedBinding("OpenPoliceAndAdministration", modifier: "<keyboard>/ctrl", binding: "###", callback: (_) => OnOpenToolWindow(_, "Police & Administration"));
         }
 
         private Entity GetMenuEntity(string prefabName)
@@ -199,7 +197,33 @@ namespace ExtendedHotkeys.Systems
         {
             if (m_GameScreenUISystem.isMenuActive)
                 return;
-            
+
+            if (!m_Settings.EnableOpenMenus)
+                return;
+
+            switch (prefabName)
+            {
+                case "Roads" when !m_Settings.EnableRoadsHotkeys:
+                case "Zones" when !m_Settings.EnableZonesHotkeys:
+                case "Landscaping" when !m_Settings.EnableLandscapingHotkeys:
+                case "Electricity" when !m_Settings.EnableElectricityHotkeys:
+                case "Water & Sewage" when !m_Settings.EnableWaterAndSewageHotkeys:
+                case "Health & Deathcare" when !m_Settings.EnableHealthAndDeathcareHotkeys:
+                case "Garbage Management" when !m_Settings.EnableGarbageManagementHotkeys:
+                case "Education & Research" when !m_Settings.EnableEducationAndResearchHotkeys:
+                case "Fire & Rescue" when !m_Settings.EnableFireAndRescueHotkeys:
+                case "Transportation" when !m_Settings.EnableTransportationHotkeys:
+                case "Parks & Recreation" when !m_Settings.EnableParksAndRecreationHotkeys:
+                case "Communications" when !m_Settings.EnableCommunicationsHotkeys:
+                case "Signatures" when !m_Settings.EnableSignaturesHotkeys:
+                case "Areas" when !m_Settings.EnableAreasHotkeys:
+                case "Police & Administration" when !m_Settings.EnablePoliceAndAdministrationHotkeys:
+                {
+                    Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}]: Hotkey for {prefabName} is disabled");
+                    return;
+                }
+            }
+
             View ui = GameManager.instance.userInterface.view.View;
             Entity menuEntity = GetMenuEntity(prefabName);
 
@@ -225,20 +249,15 @@ namespace ExtendedHotkeys.Systems
             if (!m_Settings.EnableNTMGroup || m_ToolSystem.activeTool is not NetToolSystem)
                 return;
 
-            if (mode == NetToolSystem.Mode.Straight && !m_Settings.EnableNTMStraight)
-                return;
-
-            if (mode == NetToolSystem.Mode.SimpleCurve && !m_Settings.EnableNTMSimpleCurve)
-                return;
-
-            if (mode == NetToolSystem.Mode.ComplexCurve && !m_Settings.EnableNTMComplexCurve)
-                return;
-
-            if (mode == NetToolSystem.Mode.Continuous && !m_Settings.EnableNTMContinuous)
-                return;
-
-            if (mode == NetToolSystem.Mode.Grid && !m_Settings.EnableNTMGrid)
-                return;
+            switch (mode)
+            {
+                case NetToolSystem.Mode.Straight when !m_Settings.EnableNTMStraight:
+                case NetToolSystem.Mode.SimpleCurve when !m_Settings.EnableNTMSimpleCurve:
+                case NetToolSystem.Mode.ComplexCurve when !m_Settings.EnableNTMComplexCurve:
+                case NetToolSystem.Mode.Continuous when !m_Settings.EnableNTMContinuous:
+                case NetToolSystem.Mode.Grid when !m_Settings.EnableNTMGrid:
+                    return;
+            }
 
             m_NetToolSystem.mode = mode;
             View ui = GameManager.instance.userInterface.view.View;

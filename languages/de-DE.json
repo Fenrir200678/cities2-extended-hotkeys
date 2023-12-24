@@ -19,5 +19,22 @@
   "extendedhotkeys.setting.elevationStepScroll": "Höhenstufe-Scroll",
   "extendedhotkeys.setting.elevationStepScroll.description": "Durch Erhöhungsstufe scrollen.",
   "extendedhotkeys.setting.netToolModes": "Werkzeugmodi",
-  "extendedhotkeys.setting.netToolModes.description": "Durch Netz-Werkzeugmodi springen"
+  "extendedhotkeys.setting.netToolModes.description": "Durch Netz-Werkzeugmodi springen",
+  "extendedhotkeys.setting.openMenus": "Werkzeugmenüs öffnen",
+  "extendedhotkeys.setting.openMenus.description": "Öffnet die Werkzeugmenüs.",
+  "extendedhotkeys.setting.zonesMenu": "Zonen",
+  "extendedhotkeys.setting.areasMenu": "Flächen",
+  "extendedhotkeys.setting.signaturesMenu": "Spezialgebäude",
+  "extendedhotkeys.setting.roadsMenu": "Straßen",
+  "extendedhotkeys.setting.electricityMenu": "Strom",
+  "extendedhotkeys.setting.waterAndSewageMenu": "Wasser und Abwasser",
+  "extendedhotkeys.setting.healthAndDeathcareMenu": "Gesundheitsfürsorge & Bestattung",
+  "extendedhotkeys.setting.garbageManagementMenu": "Müllverwaltung",
+  "extendedhotkeys.setting.educationAndResearchMenu": "Bildung & Forschung",
+  "extendedhotkeys.setting.fireAndRescueMenu": "Feuerwehr und Rettungsdienst",
+  "extendedhotkeys.setting.policeAndAdministrationMenu": "Polizei und Verwaltung",
+  "extendedhotkeys.setting.transportationMenu": "Transport",
+  "extendedhotkeys.setting.parksAndRecreationMenu": "Parks und Erholung",
+  "extendedhotkeys.setting.communicationsMenu": "Kommunikation",
+  "extendedhotkeys.setting.landscapingMenu": "Landschaftsbau"
 }

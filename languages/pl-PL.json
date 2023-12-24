@@ -19,5 +19,22 @@
   "extendedhotkeys.setting.elevationStepScroll": "Elevation Step Scroll",
   "extendedhotkeys.setting.elevationStepScroll.description": "Percorrer o nível do degrau de elevação",
   "extendedhotkeys.setting.netToolModes": "Modos de ferramentas",
-  "extendedhotkeys.setting.netToolModes.description": "Percorrer os modos de ferramenta da rede."
+  "extendedhotkeys.setting.netToolModes.description": "Percorrer os modos de ferramenta da rede.",
+  "extendedhotkeys.setting.openMenus": "Open Toolmenus",
+  "extendedhotkeys.setting.openMenus.description": "Open the toolmenus.",
+  "extendedhotkeys.setting.zonesMenu": "Zones",
+  "extendedhotkeys.setting.areasMenu": "Areas",
+  "extendedhotkeys.setting.signaturesMenu": "Signatures",
+  "extendedhotkeys.setting.roadsMenu": "Roads",
+  "extendedhotkeys.setting.electricityMenu": "Electricity",
+  "extendedhotkeys.setting.waterAndSewageMenu": "Water & Sewage",
+  "extendedhotkeys.setting.healthAndDeathcareMenu": "Health & Deathcare",
+  "extendedhotkeys.setting.garbageManagementMenu": "Garbage Management",
+  "extendedhotkeys.setting.educationAndResearchMenu": "Education & Research",
+  "extendedhotkeys.setting.fireAndRescueMenu": "Fire & Rescue",
+  "extendedhotkeys.setting.policeAndAdministrationMenu": "Police & Administration",
+  "extendedhotkeys.setting.transportationMenu": "Transportation",
+  "extendedhotkeys.setting.parksAndRecreationMenu": "Parks & Recreation",
+  "extendedhotkeys.setting.communicationsMenu": "Communications",
+  "extendedhotkeys.setting.landscapingMenu": "Landscaping"
 }

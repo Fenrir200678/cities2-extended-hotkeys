@@ -30,6 +30,25 @@ namespace ExtendedHotkeys.Settings
         public bool EnableNTMComplexCurve { get; set; } = true;
         public bool EnableNTMContinuous { get; set; } = true;
         public bool EnableNTMGrid { get; set; } = true;
+        
+        public bool EnableOpenMenus { get; set; } = true;
+        public bool ExpandOpenMenus { get; set; } = false;
+        public bool EnableZonesHotkeys { get; set; } = true;
+        public bool EnableElectricityHotkeys { get; set; } = false;
+        public bool EnableWaterAndSewageHotkeys { get; set; } = false;
+        public bool EnableTransportationHotkeys { get; set; } = false;
+        public bool EnableHealthAndDeathcareHotkeys { get; set; } = false;
+        public bool EnableFireAndRescueHotkeys { get; set; } = false;
+        public bool EnableEducationAndResearchHotkeys { get; set; } = false;
+        public bool EnableGarbageManagementHotkeys { get; set; } = false;
+        public bool EnableParksAndRecreationHotkeys { get; set; } = false;
+        public bool EnableCommunicationsHotkeys { get; set; } = false;
+        public bool EnableLandscapingHotkeys { get; set; } = true;
+        public bool EnableRoadsHotkeys { get; set; } = true;
+        public bool EnableSignaturesHotkeys { get; set; } = false;
+        public bool EnableAreasHotkeys { get; set; } = false;
+        public bool EnablePoliceAndAdministrationHotkeys { get; set; } = false;
+        
         public KeyCode NetToolKeyCode { get; set; } = KeyCode.LeftControl;
         public KeyCode SnappingKeyCode { get; set; } = KeyCode.LeftShift;
         public KeyCode ElevationKeyCode { get; set; } = KeyCode.LeftAlt;
